@@ -2,7 +2,7 @@
   "db": {
     "name": "db",
     "connector": "mongodb",
-    "host": "127.0.0.1",
+    "host": "db",
     "port": 27017
   }
 }

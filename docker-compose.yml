@@ -1,0 +1,26 @@
+version: "3"
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+    links:
+      - db
+    environment:  
+      - MONGO_URL=mongodb://db:27017/diary
+  db:
+    image: mongo:3.4
+    volumes:
+      - 'mongo:/data/db'
+    ports: 
+      - "27017:27017"
+  # mysql:
+  #   image: mysql
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+volumes:
+  mongo:
