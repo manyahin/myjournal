@@ -1,12 +1,13 @@
 {
   "name": "Note",
   "properties": {
-    "title": {
-      "type": "string",
+    "created_at": {
+      "type": "date",
       "required": true
     },
     "content": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

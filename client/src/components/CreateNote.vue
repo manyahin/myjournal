@@ -4,7 +4,7 @@
       placeholder="What happened?"
       autofocus=true
       required
-      v-model="body"
+      v-model="content"
       @keydown.enter="handleCmdEnter($event)">
     </textarea>
     <button @click="saveNote" type="submit">Write</button>
@@ -23,7 +23,7 @@ export default {
   },
   data () {
     return {
-      body: '',
+      content: '',
       error: '',
       notes: []
     }
@@ -39,12 +39,16 @@ export default {
     saveNote () {
       this.error = ''
 
-      if (!this.body.length) {
+      if (!this.content.length) {
         this.error = 'The note cannot be empty'
         return
       }
 
-      axios.post('http://localhost:3000/api/Notes', {'title': new Date().toString(), 'content': this.body})
+      let note = {}
+      note.created_at = new Date()
+      note.content = this.content
+
+      axios.post('http://localhost:3000/api/Notes', note)
         .then(({data}) => {
           console.log(data)
         })
