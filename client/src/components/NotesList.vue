@@ -1,51 +1,22 @@
 <template>
   <section class="notes">
-    <h3>Last notes:</h3>
+    <h2>Last notes:</h2>
 
     <ul>
-      <li>7 Aug</li>
-      <li>
+      <li v-for="(notes, index) in sortedNotes" :key="index">
+        <h4>{{ new Date(parseInt(index)) | moment("dddd, MMMM Do YYYY") }}</h4>
         <ul>
-          <li>11:32 - lala</li>
-          <li>11:32 - bebe</li>
-        </ul>
-      </li>
-      <li>6 Aug</li>
-      <li>
-        <ul>
-          <li>20:44 - ohoho</li>
+          <li v-for="(note, i) in notes" :key="i">
+            {{ note.created_at | moment('HH:mm:ss') }} - {{ note.body }}
+          </li>
         </ul>
       </li>
     </ul>
 
-    <ul>
-      <li v-for="(note, index) in notes" :key="index">
-        Note ID: {{ note.id }} : {{ getProperDateFormat(note.created_at) }} - {{ note.content }}
-      </li>
-    </ul>
   </section>
 </template>
 
 <script>
-import moment from 'moment'
-
-// moment.locale('ru')
-
-// let data = [
-//   {
-//     date: '7 aug',
-//     notes: [
-//       {
-//         time: '11:12',
-//         body: 'Hello!'
-//       },
-//       {
-//         time: '11:12',
-//         body: 'Hello!'
-//       }
-//     ]
-//   }
-// ]
 
 export default {
   props: {
@@ -53,19 +24,21 @@ export default {
       type: Array
     }
   },
-  head () {
-    return {
-      title: 'Write note'
-    }
-  },
-  // computed: {
-  //   dayTimeNotesRange () {
+  computed: {
+    sortedNotes () {
+      let sortedNotes = {}
 
-  //   }
-  // },
-  methods: {
-    getProperDateFormat (date) {
-      return moment(date).format('ddd, Do MMM YYYY; HH:mm:ss')
+      this.notes.forEach(note => {
+        let day = new Date(note.created_at)
+        day.setHours(0, 0, 0, 0)
+
+        let notes = sortedNotes[day.getTime()] || []
+        notes.push(note)
+
+        sortedNotes[day.getTime()] = notes
+      })
+
+      return sortedNotes
     }
   }
 }
@@ -75,5 +48,9 @@ export default {
 ul {
   list-style: none;
   padding-left: 10px;
+}
+
+.dayHeader {
+  font-weight: bold;
 }
 </style>

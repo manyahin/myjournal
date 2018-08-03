@@ -5,7 +5,7 @@
       "type": "date",
       "required": true
     },
-    "content": {
+    "body": {
       "type": "string",
       "required": true
     }

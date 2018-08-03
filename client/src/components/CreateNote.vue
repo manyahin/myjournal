@@ -4,7 +4,7 @@
       placeholder="What happened?"
       autofocus=true
       required
-      v-model="content"
+      v-model="body"
       @keydown.enter="handleCmdEnter($event)">
     </textarea>
     <button @click="saveNote" type="submit">Write</button>
@@ -23,7 +23,7 @@ export default {
   },
   data () {
     return {
-      content: '',
+      body: '',
       error: '',
       notes: []
     }
@@ -33,20 +33,20 @@ export default {
   },
   methods: {
     async getNewestNotes () {
-      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"100"}')
+      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"5", "order": "created_at DESC"}')
       this.notes = data
     },
     saveNote () {
       this.error = ''
 
-      if (!this.content.length) {
+      if (!this.body.length) {
         this.error = 'The note cannot be empty'
         return
       }
 
       let note = {}
       note.created_at = new Date()
-      note.content = this.content
+      note.body = this.body
 
       axios.post('http://localhost:3000/api/Notes', note)
         .then(({data}) => {
