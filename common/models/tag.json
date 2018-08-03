@@ -1,11 +1,13 @@
 {
-  "name": "Note",
+  "name": "Tag",
+  "plural": "tags",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
   "properties": {
-    "created_at": {
-      "type": "date",
-      "required": true
-    },
-    "body": {
+    "name": {
       "type": "string",
       "required": true
     }

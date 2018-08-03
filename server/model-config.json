@@ -37,5 +37,9 @@
   },
   "Note": {
     "dataSource": "db"
+  },
+  "Tag": {
+    "dataSource": "db",
+    "public": true
   }
 }

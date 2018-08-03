@@ -1,16 +1,18 @@
 <template>
-  <div class="form">
-    <textarea
-      placeholder="What happened?"
-      autofocus=true
-      required
-      v-model="body"
-      @keydown.enter="handleCmdEnter($event)">
-    </textarea>
-    <button @click="saveNote" type="submit">Write</button>
-    <div v-show="error" class="error">{{ error }}</div>
-    <notes-list :notes="notes"></notes-list>
-  </div>
+  <form class="pure-form">
+    <fieldset>
+      <textarea
+        placeholder="What happened?"
+        autofocus=true
+        required
+        v-model="body"
+        @keydown.enter="handleCmdEnter($event)">
+      </textarea>
+      <button class="pure-button" @click="saveNote" type="submit">Write</button>
+      <div class="message" v-show="message">{{ message }}</div>
+      <notes-list :notes="notes"></notes-list>
+    </fieldset>
+  </form>
 </template>
 
 <script>
@@ -24,7 +26,7 @@ export default {
   data () {
     return {
       body: '',
-      error: '',
+      message: '',
       notes: []
     }
   },
@@ -37,10 +39,10 @@ export default {
       this.notes = data
     },
     saveNote () {
-      this.error = ''
+      this.message = ''
 
       if (!this.body.length) {
-        this.error = 'The note cannot be empty'
+        this.message = 'The note cannot be empty'
         return
       }
 
@@ -53,6 +55,7 @@ export default {
           console.log(data)
         })
         .then(this.getNewestNotes)
+
         .then(this.clearBody)
     },
     handleCmdEnter ({ctrlKey, metaKey}) {
@@ -68,17 +71,6 @@ export default {
 </script>
 
 <style scoped>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    padding: 10px;
-    font-size: 16px;
-  }
-  p {
-    margin: 12px 0px;
-  }
   textarea {
     width: 100%;
     height: 150px;
@@ -91,6 +83,12 @@ export default {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+  /* Hack: autofocus attr cause red border since page loaded,
+     disable it for textarea */
+  textarea:required:invalid {
+    border: 1px solid #1A2943 !important;
+    color: white !important;
+  }
   button[type="submit"] {
     margin-top: 10px;
     width: 100%;
@@ -101,5 +99,8 @@ export default {
     padding: 4px 6px;
     font-size: 20px;
     font-weight: 200;
+  }
+  .message {
+    margin-top: 15px;
   }
 </style>
