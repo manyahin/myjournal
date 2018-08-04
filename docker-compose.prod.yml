@@ -8,14 +8,10 @@ services:
       - ./:/app
     environment:  
       - MONGO_URL=mongodb://db:27017/diary
-      - NODE_ENV=development
+      - NODE_ENV=production
     links:
       - db
   db:
     image: mongo:3.4
     volumes:
-      - 'mongo:/data/db'
-    ports: 
-      - "27017:27017"
-volumes:
-  mongo:
+      - './mongodb_data:/data/db'

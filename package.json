@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "nodemon --ignore 'client/*' .",
-    "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint && nsp check"
+    "lint": "eslint .",
+    "posttest": "npm run lint && nsp check",
+    "docker-prod": "docker-compose -f docker-compose.prod.yml up -d"
   },
   "dependencies": {
     "compression": "^1.0.3",
