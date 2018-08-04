@@ -10,12 +10,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Write Note',
-      component: CreateNote
+      redirect: 'write'
     },
     {
       path: '/write',
-      redirect: '/'
+      component: CreateNote
     },
     {
       path: '/read',

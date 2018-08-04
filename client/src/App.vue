@@ -3,8 +3,8 @@
     <div class="nav pure-menu pure-menu-horizontal">
       <h3>Private Diary</h3>
       <ul class="pure-menu-list">
-        <li class="pure-menu-item"><router-link class="pure-menu-link" to="write">Write</router-link></li>
-        <li class="pure-menu-item"><router-link class="pure-menu-link" to="read">Read</router-link></li>
+        <li class="pure-menu-item"><router-link class="pure-menu-link" to="/write">Write</router-link></li>
+        <li class="pure-menu-item"><router-link class="pure-menu-link" to="/read">Read</router-link></li>
       </ul>
     </div>
     <router-view/>
@@ -26,5 +26,8 @@ export default {
 }
 .nav {
   margin-bottom: 10px;
+}
+.nav a.router-link-active {
+  color: #000;
 }
 </style>
