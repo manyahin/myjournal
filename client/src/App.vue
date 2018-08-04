@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <div class="nav pure-menu pure-menu-horizontal">
+      <!-- <a href="#" class="pure-menu-heading pure-menu-link">Private Diary</a> -->
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item"><router-link class="pure-menu-link" to="write">Write</router-link></li>
+        <li class="pure-menu-item"><router-link class="pure-menu-link" to="read">Read</router-link></li>
+      </ul>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -16,5 +23,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 20px;
+}
+.nav {
+  margin-bottom: 10px;
 }
 </style>
