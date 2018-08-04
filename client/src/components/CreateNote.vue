@@ -51,12 +51,13 @@ export default {
       note.body = this.body
 
       axios.post('http://localhost:3000/api/Notes', note)
-        .then(({data}) => {
-          console.log(data)
-        })
+        .then(this.noteSaved)
         .then(this.getNewestNotes)
-
         .then(this.clearBody)
+    },
+    noteSaved ({data}) {
+      this.message = `Note ID ${data.note_id}
+        , Written ${data.count_symbols} symbols`
     },
     handleCmdEnter ({ctrlKey, metaKey}) {
       if (ctrlKey || metaKey) {
