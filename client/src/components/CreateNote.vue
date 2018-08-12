@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getNewestNotes () {
-      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"5", "order": "created_at DESC"}')
+      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"50", "order": "created_at DESC"}')
       this.notes = data
     },
     saveNote () {

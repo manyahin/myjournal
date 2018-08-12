@@ -44,9 +44,10 @@ export default {
 <style scoped>
   ul {
     list-style: none;
-    padding-left: 10px;
+    padding-left: 0;
   }
   li.note {
     margin-bottom: 10px;
+    line-height: 1.3em;
   }
 </style>

@@ -1,19 +1,22 @@
 <template>
-  <div id="app">
-    <div class="nav pure-menu pure-menu-horizontal">
-      <h3>Private Diary</h3>
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item"><router-link class="pure-menu-link" to="/write">Write</router-link></li>
-        <li class="pure-menu-item"><router-link class="pure-menu-link" to="/read">Read</router-link></li>
-      </ul>
-    </div>
-    <router-view/>
-  </div>
+  <component v-bind:is="layout"></component> 
 </template>
 
 <script>
+import AppLayout from './layouts/AppLayout'
+import LoginLayout from './layouts/LoginLayout'
+
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    layout () {
+      return this.$store.getters.layout
+    }
+  },
+  components: {
+    'app-layout': AppLayout,
+    'login-layout': LoginLayout
+  }
 }
 </script>
 
@@ -22,7 +25,9 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 20px;
+  padding: 0 20px;
+  width: 700px;
+  border-right: 1px solid grey;
 }
 .nav {
   margin-bottom: 10px;
