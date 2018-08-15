@@ -1,10 +1,9 @@
 export default {
-  isLogin: () => {
+  loggedIn: () => {
     const token = localStorage.getItem('token')
     if (token) {
       return true
-    }
-    else {
+    } else {
       return false
     }
   },

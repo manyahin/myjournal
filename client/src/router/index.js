@@ -14,7 +14,15 @@ const router = new Router({
   routes: [
     {
       path: '/login',
-      component: Login
+      component: Login,
+      beforeEnter: (to, from, next) => {
+        if (auth.loggedIn()) {
+          next('/')
+        } else {
+          store.commit('SET_LAYOUT', 'login-layout')
+          next()
+        }
+      }
     },
     {
       path: '/',
@@ -23,32 +31,12 @@ const router = new Router({
     {
       path: '/write',
       component: CreateNote,
-      beforeEnter: (to, from, next) => {
-        if (!auth.isLogin()) {
-          store.commit('SET_LAYOUT', 'login-layout')
-          next('/login')
-        } else {
-          store.commit('SET_LAYOUT', 'app-layout')
-          return next()
-        }
-      }
+      meta: { requiresAuth: true }
     },
     {
       path: '/read',
-      redirect: 'ed384f58875d01e242293142eed75a7a'
-    },
-    {
-      path: '/ed384f58875d01e242293142eed75a7a',
       component: ReadPage,
-      beforeEnter: (to, from, next) => {
-        if (!auth.isLogin()) {
-          store.commit('SET_LAYOUT', 'login-layout')
-          return next('/login')
-        } else {
-          store.commit('SET_LAYOUT', 'app-layout')
-          return next()
-        }
-      }
+      meta: { requiresAuth: true }
     },
     {
       path: '*',
@@ -58,19 +46,16 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  // if (to.path == '/login') {
-  //   next()
-  // }
-
-  // if (auth.isLogin()) {
-  //   console.log('yep!')
-  // }
-  // else {
-  //   console.log('nope')
-  //   next('/login')
-  // }
-  
-  next()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!auth.loggedIn()) {
+      next('/login')
+    } else {
+      store.commit('SET_LAYOUT', 'app-layout')
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

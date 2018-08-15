@@ -1,5 +1,7 @@
 <template>
-  <component v-bind:is="layout"></component> 
+  <div>
+    <component v-bind:is="layout"></component>
+  </div>
 </template>
 
 <script>
@@ -12,6 +14,9 @@ export default {
     layout () {
       return this.$store.getters.layout
     }
+  },
+  beforeUpdate: () => {
+    console.warn(this)
   },
   components: {
     'app-layout': AppLayout,

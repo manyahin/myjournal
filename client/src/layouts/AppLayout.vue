@@ -17,7 +17,10 @@ import auth from '@/utils/auth'
 
 export default {
   methods: {
-    logout: auth.logout
+    logout () {
+      auth.logout()
+      this.$router.go('/')
+    }
   }
 }
 </script>
