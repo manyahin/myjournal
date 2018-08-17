@@ -14,6 +14,10 @@
     ]
   },
   "User": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Customer": {
     "dataSource": "db"
   },
   "AccessToken": {
@@ -39,7 +43,6 @@
     "dataSource": "db"
   },
   "Tag": {
-    "dataSource": "db",
-    "public": true
+    "dataSource": "db"
   }
 }

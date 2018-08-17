@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <component v-bind:is="layout"></component>
-  </div>
+  <component v-bind:is="layout"></component>
 </template>
 
 <script>
-import AppLayout from './layouts/AppLayout'
-import LoginLayout from './layouts/LoginLayout'
+import AppLayout from '@/layouts/AppLayout'
+import LoginLayout from '@/layouts/LoginLayout'
 
 export default {
   name: 'App',
@@ -14,9 +12,6 @@ export default {
     layout () {
       return this.$store.getters.layout
     }
-  },
-  beforeUpdate: () => {
-    console.warn(this)
   },
   components: {
     'app-layout': AppLayout,
