@@ -4,6 +4,7 @@
     "port": 27017,
     "database": "diary",
     "name": "db",
-    "connector": "mongodb"
+    "connector": "mongodb",
+    "useNewUrlParser": true
   }
 }
