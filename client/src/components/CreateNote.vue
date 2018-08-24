@@ -18,6 +18,7 @@
 <script>
 import axios from 'axios'
 import NotesList from '@/components/NotesList'
+import auth from '@/utils/auth'
 
 export default {
   components: {
@@ -35,7 +36,9 @@ export default {
   },
   methods: {
     async getNewestNotes () {
-      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"50", "order": "created_at DESC"}')
+      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"50", "order": "created_at DESC"}', {
+        headers: {'Authorization': auth.getToken()}
+      })
       this.notes = data
     },
     saveNote () {

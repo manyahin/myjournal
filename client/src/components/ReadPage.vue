@@ -5,6 +5,7 @@
 <script>
 import axios from 'axios'
 import NotesList from '@/components/NotesList'
+import auth from '@/utils/auth'
 
 export default {
   components: {
@@ -16,7 +17,9 @@ export default {
     }
   },
   async created () {
-    let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"order": "created_at ASC"}')
+    let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"order": "created_at ASC"}', {
+        headers: {'Authorization': auth.getToken()}
+      })
     this.notes = data
   }
 }

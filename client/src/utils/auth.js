@@ -7,6 +7,9 @@ export default {
       return false
     }
   },
+  getToken: () => {
+    return localStorage.getItem('token')
+  },
   logout: () => {
     // need to redirect to /
     // https://router.vuejs.org/guide/essentials/navigation.html

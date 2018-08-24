@@ -1,4 +1,9 @@
 {
   "name": "Customer",
-  "base": "User"
+  "base": "User",
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }
