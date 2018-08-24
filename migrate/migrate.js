@@ -9,14 +9,14 @@ var connection = mysql.createConnection({
 });
 
 const db = require('monk')('localhost/diary')
-const notes = db.get('notes')
+const note = db.get('Note')
 
 connection.connect();
  
-connection.query('SELECT id, date, text FROM Note', function (error, results, fields) {
+connection.query('SELECT id, date, text FROM notes', function (error, results, fields) {
   if (error) throw error;
   results.forEach(data => {
-    notes.insert({
+    note.insert({
       body: data.text,
       created_at: data.date
     })
