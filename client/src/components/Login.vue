@@ -18,35 +18,44 @@
 
         <button @click="login" type="submit" class="pure-button pure-button-primary">Sign in</button>
 
-        <p class="red">{{ errorMessage }}</p>
+        <p v-if="errorMessage" class="red">{{ errorMessage }}</p>
+        <p v-if="notifyMessage">{{ notifyMessage }}</p>
       </fieldset>
   </form>
 </template>
 
 <script>
 import axios from 'axios'
+import _ from 'lodash'
 
 export default {
   data () {
     return {
       email: '',
       password: '',
-      errorMessage: ''
+      errorMessage: '',
+      notifyMessage: ''
     }
   },
   methods: {
     login () {
+      this.resetForm()
+
       axios.post('http://localhost:3000/api/Customers/login', {
         email: this.email,
         password: this.password
       })
         .then(res => {
           localStorage.setItem('token', res.data.id)
+          this.notifyMessage = 'Loading...'
           this.$router.go('/')
         })
         .catch(err => {
-          this.errorMessage = err.response.data.error.message
+          this.errorMessage = _.get(err, 'response.data.error.message') || 'Connection problem'
         })
+    },
+    resetForm () {
+      this.errorMessage = this.notifyMessage = ''
     }
   }
 }
