@@ -5,7 +5,7 @@
         <h4>{{ new Date(parseInt(index)) | moment("dddd, MMMM Do YYYY") }}</h4>
         <ul>
           <li v-for="(note, i) in notes" :key="i" class="note">
-            {{ note.created_at | moment('HH:mm') }} - {{ note.body }}
+            <small>{{ note.created_at | moment('HH:mm') }} - </small>{{ note.body }}
           </li>
         </ul>
       </li>

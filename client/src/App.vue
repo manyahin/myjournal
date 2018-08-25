@@ -26,8 +26,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0 20px;
-  width: 700px;
-  border-right: 1px solid grey;
+  max-width: 700px;
 }
 .nav {
   margin-bottom: 10px;

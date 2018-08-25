@@ -1,8 +1,8 @@
 <template>
   <form class="pure-form pure-form-stacked">
     <fieldset>
-
-        <p>donqu@mail.com / qwerty</p>
+        
+        <h3>My Diary</h3>
 
         <label for="email">Email</label>
         <input id="email" type="email" placeholder="Email" v-model="email">
@@ -80,6 +80,10 @@ export default {
 </script>
 
 <style>
+form {
+  margin: 50px auto;
+  width: 200px;
+}
 .red {
   color: red;
 }

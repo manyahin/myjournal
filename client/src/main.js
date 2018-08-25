@@ -16,7 +16,7 @@ axios.defaults.baseURL = 'http://localhost:3000/api/';
 axios.defaults.headers.common['Authorization'] = auth.getToken();
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-// // Add a response interceptor
+// Add a response interceptor
 axios.interceptors.response.use(res => {
   return res
 }, error => {
