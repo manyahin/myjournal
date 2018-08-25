@@ -17,9 +17,7 @@ export default {
     }
   },
   async created () {
-    let { data } = await axios.get('Notes?filter={"order": "created_at ASC"}', {
-      headers: {'Authorization': auth.getToken()}
-    })
+    let { data } = await axios.get('Notes?filter={"order": "created_at ASC"}')
     this.notes = data
   }
 }

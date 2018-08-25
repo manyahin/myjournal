@@ -41,7 +41,25 @@ export default {
     login () {
       this.resetForm()
 
-      axios.post('Customers/login', {
+      // fetch('http://localhost:3000/api/Customers/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     "Content-Type": "application/json; charset=utf-8",
+      //     // "Content-Type": "application/x-www-form-urlencoded",
+      //   },
+      //   body: JSON.stringify({
+      //     email: this.email,
+      //     password: this.password
+      //   })
+      // }).then(res => res.json())
+      // .then(res => {
+      //   localStorage.setItem('token', res.id)
+      //   this.notifyMessage = 'Loading...'
+      //   window.location = '/'
+      // })
+      // .catch(err => console.warn(err))
+
+      axios.post('http://localhost:3000/api/Customers/login', {
         email: this.email,
         password: this.password
       })

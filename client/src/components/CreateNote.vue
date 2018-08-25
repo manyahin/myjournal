@@ -36,9 +36,7 @@ export default {
   },
   methods: {
     async getNewestNotes () {
-      let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}', {
-        headers: {'Authorization': auth.getToken()}
-      })
+      let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}')
       this.notes = data
     },
     saveNote () {
