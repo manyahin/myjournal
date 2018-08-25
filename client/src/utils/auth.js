@@ -11,8 +11,7 @@ export default {
     return localStorage.getItem('token')
   },
   logout: () => {
-    // need to redirect to /
-    // https://router.vuejs.org/guide/essentials/navigation.html
     localStorage.removeItem('token')
+    window.location = '/'
   }
 }

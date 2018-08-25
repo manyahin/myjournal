@@ -41,14 +41,14 @@ export default {
     login () {
       this.resetForm()
 
-      axios.post('http://localhost:3000/api/Customers/login', {
+      axios.post('Customers/login', {
         email: this.email,
         password: this.password
       })
         .then(res => {
           localStorage.setItem('token', res.data.id)
           this.notifyMessage = 'Loading...'
-          this.$router.go('/')
+          window.location = '/'
         })
         .catch(err => {
           this.errorMessage = _.get(err, 'response.data.error.message') || 'Connection problem'

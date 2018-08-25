@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async getNewestNotes () {
-      let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"limit":"50", "order": "created_at DESC"}', {
+      let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}', {
         headers: {'Authorization': auth.getToken()}
       })
       this.notes = data
@@ -53,7 +53,7 @@ export default {
       note.created_at = new Date()
       note.body = this.body
 
-      axios.post('http://localhost:3000/api/Notes', note)
+      axios.post('Notes', note)
         .then(this.noteSaved)
         .then(this.getNewestNotes)
         .then(this.clearBody)

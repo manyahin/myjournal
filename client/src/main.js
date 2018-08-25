@@ -6,8 +6,24 @@ import router from './router'
 import { store } from './store'
 
 import VueMoment from 'vue-moment'
+import axios from 'axios'
+
+import auth from '@/utils/auth.js'
 
 Vue.config.productionTip = false
+
+axios.defaults.baseURL = 'http://localhost:3000/api/';
+
+// Add a response interceptor
+axios.interceptors.response.use(res => {
+  return res
+}, error => {
+  if (error.response.status == 401) {
+    return auth.logout()
+  }
+
+  return Promise.reject(error)
+})
 
 Vue.use(VueMoment)
 
