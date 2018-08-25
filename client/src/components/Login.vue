@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 form {
   margin: 50px auto;
   width: 200px;
