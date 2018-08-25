@@ -81,7 +81,7 @@ export default {
     border: 1px solid #0F595B;
     border-radius: 4px;
     display: block;
-    font-size: inherit;
+    caret-color: grey;
     padding: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

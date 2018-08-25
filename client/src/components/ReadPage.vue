@@ -18,8 +18,8 @@ export default {
   },
   async created () {
     let { data } = await axios.get('http://localhost:3000/api/Notes?filter={"order": "created_at ASC"}', {
-        headers: {'Authorization': auth.getToken()}
-      })
+      headers: {'Authorization': auth.getToken()}
+    })
     this.notes = data
   }
 }
