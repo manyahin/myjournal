@@ -1,13 +1,12 @@
 version: "3"
 services:
   api:
-    build: .
+    image: diary_api_api:latest
     ports:
       - "3000:3000"
     volumes:
       - ./:/app
     environment:  
-      - MONGO_URL=mongodb://db:27017/diary
       - NODE_ENV=production
     links:
       - db

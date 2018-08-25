@@ -10,7 +10,7 @@ ENV NODE_ENV production
 
 COPY . /app
 
-RUN cd /app/client && npm install && npm build
+RUN cd /app/client && npm install && npm run build
 
 EXPOSE 3000
 

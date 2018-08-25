@@ -1,7 +1,6 @@
 <template>
   <form class="pure-form pure-form-stacked">
     <fieldset>
-        
         <h3>My Diary</h3>
 
         <label for="email">Email</label>
@@ -16,7 +15,7 @@
         </label>
         -->
 
-        <button @click="login" type="submit" class="pure-button pure-button-primary">Sign in</button>
+        <button @click="login" type="button" class="pure-button pure-button-primary">Sign in</button>
 
         <p v-if="errorMessage" class="red">{{ errorMessage }}</p>
         <p v-if="notifyMessage">{{ notifyMessage }}</p>
@@ -39,7 +38,7 @@ export default {
   },
   methods: {
     login () {
-      this.resetForm()
+      this.resetMessages()
 
       // fetch('http://localhost:3000/api/Customers/login', {
       //   method: 'POST',
@@ -59,7 +58,7 @@ export default {
       // })
       // .catch(err => console.warn(err))
 
-      axios.post('http://localhost:3000/api/Customers/login', {
+      axios.post('Customers/login', {
         email: this.email,
         password: this.password
       })
@@ -72,8 +71,9 @@ export default {
           this.errorMessage = _.get(err, 'response.data.error.message') || 'Connection problem'
         })
     },
-    resetForm () {
-      this.errorMessage = this.notifyMessage = ''
+    resetMessages () {
+      this.errorMessage = ''
+      this.notifyMessage = ''
     }
   }
 }
@@ -83,6 +83,9 @@ export default {
 form {
   margin: 50px auto;
   width: 200px;
+}
+button {
+  margin-top: 14px;
 }
 .red {
   color: red;

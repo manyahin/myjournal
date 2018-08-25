@@ -20,7 +20,9 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.interceptors.response.use(res => {
   return res
 }, error => {
-  if (error.response.status == 401) {
+  // Handle lost token events
+  if (error.response.status == 401 
+    && !error.request.responseURL.match('Customers/login') ) {
     return auth.logout()
   }
 
