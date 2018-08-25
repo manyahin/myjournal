@@ -12,11 +12,7 @@ import auth from '@/utils/auth.js'
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'http://db:3000/api/';
-if (process.env.NODE_ENV == 'development') {
-  axios.defaults.baseURL = 'http://localhost:3000/api/';
-}
-
+axios.defaults.baseURL = `http://${window.location.hostname}:3000/api/`;
 axios.defaults.headers.common['Authorization'] = auth.getToken();
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
