@@ -5,7 +5,6 @@
 <script>
 import axios from 'axios'
 import NotesList from '@/components/NotesList'
-import auth from '@/utils/auth'
 
 export default {
   components: {

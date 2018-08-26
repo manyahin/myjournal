@@ -12,17 +12,17 @@ import auth from '@/utils/auth.js'
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = `http://${window.location.hostname}:3000/api/`;
-axios.defaults.headers.common['Authorization'] = auth.getToken();
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.baseURL = `http://${window.location.hostname}:3000/api/`
+axios.defaults.headers.common['Authorization'] = auth.getToken()
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // Add a response interceptor
 axios.interceptors.response.use(res => {
   return res
 }, error => {
   // Handle lost token events
-  if (error.response.status == 401 
-    && !error.request.responseURL.match('Customers/login') ) {
+  if (error.response.status === 401 &&
+    !error.request.responseURL.match('Customers/login')) {
     return auth.logout()
   }
 

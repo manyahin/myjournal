@@ -1,5 +1,3 @@
-import router from 'vue-router'
-
 export default {
   loggedIn: () => {
     const token = localStorage.getItem('token')
@@ -14,6 +12,6 @@ export default {
   },
   logout: () => {
     localStorage.removeItem('token')
-    router.go('/')
+    window.location = '/'
   }
 }

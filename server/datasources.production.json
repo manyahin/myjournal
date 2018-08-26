@@ -1,9 +1,0 @@
-{
-  "db": {
-    "name": "db",
-    "connector": "mongodb",
-    "database": "diary",
-    "host": "db",
-    "port": 27017
-  }
-}

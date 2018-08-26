@@ -1,7 +1,8 @@
 version: "3"
+
 services:
   web:
-    image: mydiary:1.0
+    image: manyahin/mydiary:1.0
     build: .
     ports:
       - "3000:3000"
@@ -11,11 +12,13 @@ services:
       - NODE_ENV=development
     links:
       - db
+
   db:
     image: mongo:3.4
     volumes:
       - 'mongo:/data/db'
     ports: 
       - "27017:27017"
+
 volumes:
   mongo:
