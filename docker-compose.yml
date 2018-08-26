@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    image: manyahin/mydiary:1.0
+    image: mydiary:1.0
     build: .
     ports:
       - "3000:3000"

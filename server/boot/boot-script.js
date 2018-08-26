@@ -6,9 +6,8 @@ module.exports = function(app) {
   // create default customer
   Customer.destroyAll(() => {
     Customer.create({
-      "realm": "Don Quixote",
-      "username": "donqu",
-      "email": "donqu@mail.com",
+      "username": "user",
+      "email": "user@mail.com",
       "emailVerified": true,
       'password': 'qwerty'
     })
