@@ -38,7 +38,9 @@ export default {
       let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}')
       this.notes = data
     },
-    saveNote () {
+    saveNote (e) {
+      e.preventDefault()
+
       this.message = ''
 
       if (!this.body.length) {
