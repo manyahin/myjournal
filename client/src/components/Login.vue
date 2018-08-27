@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     login (e) {
-      e.preventDefault()
+      if (e) e.preventDefault()
 
       this.resetMessages()
 

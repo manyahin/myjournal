@@ -39,7 +39,7 @@ export default {
       this.notes = data
     },
     saveNote (e) {
-      e.preventDefault()
+      if (e) e.preventDefault()
 
       this.message = ''
 
@@ -53,11 +53,16 @@ export default {
       note.body = this.body
 
       axios.post('Notes', note)
-        .then(this.noteSaved)
-        .then(this.getNewestNotes)
+        .then(this.saveNote)
         .then(this.clearBody)
     },
-    noteSaved ({data}) {
+    saveNote ({data}) {
+      this.notes.unshift({
+        id: data.id,
+        created_at: data.created_at,
+        body: data.body
+      })
+
       this.message = `Note ID ${data.note_id}
         , Written ${data.count_symbols} symbols`
     },
