@@ -25,7 +25,7 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 20px;
+  padding: 0 16px;
   max-width: 700px;
 }
 .nav {

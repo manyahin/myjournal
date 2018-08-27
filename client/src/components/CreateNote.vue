@@ -5,7 +5,7 @@
         placeholder="What happened?"
         autofocus=true
         required
-        v-model="body"
+        v-model.trim="body"
         @keydown.enter="handleCmdEnter($event)">
       </textarea>
       <button class="pure-button" @click="saveNote" type="submit">Write</button>

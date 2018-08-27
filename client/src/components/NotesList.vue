@@ -49,5 +49,6 @@ export default {
   li.note {
     margin-bottom: 10px;
     line-height: 1.3em;
+    white-space: pre-line;
   }
 </style>

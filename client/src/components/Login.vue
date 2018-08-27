@@ -4,10 +4,10 @@
         <h3>My Diary</h3>
 
         <label for="email">Email</label>
-        <input id="email" type="email" placeholder="Email" v-model="email">
+        <input id="email" type="email" placeholder="Email" v-model="email" required>
 
         <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Password" v-model="password">
+        <input id="password" type="password" placeholder="Password" v-model="password" required>
 
         <!--
         <label for="remember" class="pure-checkbox">
@@ -15,7 +15,7 @@
         </label>
         -->
 
-        <button @click="login" type="button" class="pure-button pure-button-primary">Sign in</button>
+        <button @click="login" type="submit" class="pure-button pure-button-primary">Sign in</button>
 
         <p v-if="errorMessage" class="red">{{ errorMessage }}</p>
         <p v-if="notifyMessage">{{ notifyMessage }}</p>
@@ -37,26 +37,10 @@ export default {
     }
   },
   methods: {
-    login () {
-      this.resetMessages()
+    login (e) {
+      e.preventDefault()
 
-      // fetch('http://localhost:3000/api/Customers/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     "Content-Type": "application/json; charset=utf-8",
-      //     // "Content-Type": "application/x-www-form-urlencoded",
-      //   },
-      //   body: JSON.stringify({
-      //     email: this.email,
-      //     password: this.password
-      //   })
-      // }).then(res => res.json())
-      // .then(res => {
-      //   localStorage.setItem('token', res.id)
-      //   this.notifyMessage = 'Loading...'
-      //   window.location = '/'
-      // })
-      // .catch(err => console.warn(err))
+      this.resetMessages()
 
       axios.post('Customers/login', {
         email: this.email,
