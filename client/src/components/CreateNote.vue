@@ -8,8 +8,12 @@
         v-model.trim="body"
         @keydown.enter="handleCmdEnter($event)">
       </textarea>
-      <button class="pure-button" @click="saveNote" type="submit">Write</button>
-      <div class="message" v-show="message">{{ message }}</div>
+      <div class="pure-g">
+        <div class="pure-u-2-3 message">{{ message }}</div>
+        <div class="pure-u-1-3">
+          <button class="pure-button" @click="saveNote" type="submit">Write</button>
+        </div>
+      </div>
       <notes-list :notes="notes"></notes-list>
     </fieldset>
   </form>
@@ -53,10 +57,10 @@ export default {
       note.body = this.body
 
       axios.post('Notes', note)
-        .then(this.saveNote)
+        .then(this.noteSaved)
         .then(this.clearBody)
     },
-    saveNote ({data}) {
+    noteSaved ({data}) {
       this.notes.unshift({
         id: data.id,
         created_at: data.created_at,
@@ -109,6 +113,7 @@ export default {
     font-weight: 200;
   }
   .message {
+    font-size: 15px;
     margin-top: 15px;
   }
 </style>
