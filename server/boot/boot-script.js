@@ -10,7 +10,7 @@ module.exports = function(app) {
         "username": "user",
         "email": "user@mail.com",
         "emailVerified": true,
-        'password': 'qwerty'
+        'password': process.env.PASSWORD
       })
     }
   })
