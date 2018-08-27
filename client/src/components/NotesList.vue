@@ -2,7 +2,7 @@
   <section class="notes">
     <ul>
       <li v-for="(notes, index) in sortedNotes" :key="index">
-        <h4>{{ new Date(parseInt(index)) | moment("dddd, MMMM Do YYYY") }}</h4>
+        <h4>{{ new Date(parseInt(index)) | moment("dddd, MMM Do YY") }}</h4>
         <ul>
           <li v-for="(note, i) in notes" :key="i" class="note">
             <small>{{ note.created_at | moment('HH:mm') }} - </small>{{ note.body }}
