@@ -13,7 +13,7 @@ services:
     links:
       - db
     env_file:
-      - .env
+      - .docker-env
 
   db:
     image: mongo:3.4

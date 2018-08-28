@@ -3,8 +3,10 @@
     <fieldset>
         <h3>My Diary</h3>
 
+        <!--
         <label for="email">Email</label>
         <input id="email" type="email" placeholder="Email" v-model="email" required>
+        -->
 
         <label for="password">Password</label>
         <input id="password" type="password" placeholder="Password" v-model="password" required>
@@ -30,7 +32,7 @@ import _ from 'lodash'
 export default {
   data () {
     return {
-      email: '',
+      email: 'user@mail.com',
       password: '',
       errorMessage: '',
       notifyMessage: ''

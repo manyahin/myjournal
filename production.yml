@@ -2,17 +2,11 @@ version: "3"
 
 services:
   web:
-    image: manyahin/mydiary:1.0
-    ports:
-      - "3000:3000"
     environment:  
       - NODE_ENV=production
-    links:
-      - db
     restart: always
 
   db:
-    image: mongo:3.4
     volumes:
       - './mongodb_data:/data/db'
     restart: always
