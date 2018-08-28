@@ -2,8 +2,16 @@ version: "3"
 
 services:
   web:
+    image: mydiary:1.0
+    build: .
+    ports:
+      - "3000:3000"
     environment:  
       - NODE_ENV=production
+    links:
+      - db
+    env_file:
+      - .docker-env
     restart: always
 
   db:
