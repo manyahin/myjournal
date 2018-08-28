@@ -15,6 +15,7 @@ services:
     restart: always
 
   db:
+    image: mongo:3.4
     volumes:
       - './mongodb_data:/data/db'
     restart: always
