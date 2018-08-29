@@ -42,13 +42,16 @@ export default {
 </script>
 
 <style scoped>
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  li.note {
-    margin-bottom: 10px;
-    line-height: 1.3em;
-    white-space: pre-line;
-  }
+.notes {
+  word-wrap: break-word
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+li.note {
+  margin-bottom: 10px;
+  line-height: 1.3em;
+  white-space: pre-line;
+}
 </style>
