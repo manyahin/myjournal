@@ -1,5 +1,5 @@
 *.tar
 *.zip
 *.gz
-*.rar
 mongo_db
+.dropbox_uploader
