@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd $(dirname $0)
+
 docker run --rm --network mydiary_default -v $(pwd)/mongo_db:/backup \
 	mongo:3.4 bash -c 'mongodump --out /backup --host db:27017'
 
