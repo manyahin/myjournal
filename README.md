@@ -11,4 +11,10 @@
     docker-compose build
 
     # start production
-    npm prod
+    npm run prod
+
+# Backup
+
+    /backup/run.sh
+
+Will make tar arhchive in backup folder and will upload it to Dropbox. Run /backup/dropbox_uploader.sh before to setup Dropbox token.
