@@ -1,22 +1,24 @@
 <template>
-  <form class="pure-form">
-    <fieldset>
-      <textarea
-        placeholder="What happened?"
-        autofocus=true
-        required
-        v-model.trim="body"
-        @keydown.enter="handleCmdEnter($event)">
-      </textarea>
-      <div class="pure-g">
-        <div class="pure-u-2-3 message">{{ message }}</div>
-        <div class="pure-u-1-3">
-          <button class="pure-button" @click="saveNote" type="submit">Write</button>
+  <div>
+    <form class="pure-form">
+      <fieldset>
+        <textarea
+          placeholder="What happened?"
+          autofocus=true
+          required
+          v-model.trim="body"
+          @keydown.enter="handleCmdEnter($event)">
+        </textarea>
+        <div class="pure-g">
+          <div class="pure-u-2-3 message">{{ message }}</div>
+          <div class="pure-u-1-3">
+            <button class="pure-button" @click="saveNote" type="submit">Write</button>
+          </div>
         </div>
-      </div>
-      <notes-list :notes="notes"></notes-list>
-    </fieldset>
-  </form>
+      </fieldset>
+    </form>
+    <notes-list :notes="notes"></notes-list>
+  </div>
 </template>
 
 <script>

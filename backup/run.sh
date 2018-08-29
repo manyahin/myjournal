@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Make backup of database"
+
 cd $(dirname $0)
 
 docker run --rm --network mydiary_default -v "$(pwd)/mongo_db":/backup \
