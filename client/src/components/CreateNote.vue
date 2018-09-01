@@ -10,9 +10,12 @@
           @keydown.enter="handleCmdEnter($event)">
         </textarea>
         <div class="pure-g">
-          <div class="pure-u-2-3 message">{{ message }}</div>
+          <div class="pure-u-2-3 message">
+            <span v-show="message">{{ message }}</span>
+            <img v-show="loading" src="static/ajax-loader.gif" alt="Loading...">
+          </div>
           <div class="pure-u-1-3">
-            <button class="pure-button" @click="saveNote" type="submit">Write</button>
+            <button class="pure-button" :disabled="loading" @click="saveNote" type="submit">Write</button>
           </div>
         </div>
       </fieldset>
@@ -33,7 +36,8 @@ export default {
     return {
       body: '',
       message: '',
-      notes: []
+      notes: [],
+      loading: true
     }
   },
   created () {
@@ -42,15 +46,19 @@ export default {
   methods: {
     async getNewestNotes () {
       let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}')
+
       this.notes = data
+      this.loading = false
     },
     saveNote (e) {
       if (e) e.preventDefault()
 
       this.message = ''
+      this.loading = true
 
       if (!this.body.length) {
         this.message = 'The note cannot be empty'
+        this.loading = false
         return
       }
 
@@ -69,8 +77,7 @@ export default {
         body: data.body
       })
 
-      this.message = `Note ID ${data.note_id}
-        , Written ${data.count_symbols} symbols`
+      this.message = `Written ${data.count_symbols} symbols`
     },
     handleCmdEnter ({ctrlKey, metaKey}) {
       if (ctrlKey || metaKey) {
@@ -79,6 +86,7 @@ export default {
     },
     clearBody () {
       this.body = ''
+      this.loading = false
     }
   }
 }

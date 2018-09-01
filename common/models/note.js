@@ -12,7 +12,7 @@ module.exports = function(Note) {
     data.count_symbols = ctx.args.data.body.length
     
     // attach the id of last note
-    data.note_id = await Note.count()
+    // data.note_id = await Note.count()
 
     return
   })
