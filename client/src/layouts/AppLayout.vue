@@ -3,7 +3,6 @@
     <div class="header">
         <div class="pure-menu pure-menu-horizontal">
             <a class="pure-menu-heading" href="">My Diary</a>
-
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><router-link class="pure-menu-link" to="/write">Write</router-link></li>
                 <li class="pure-menu-item"><router-link class="pure-menu-link" to="/read">Read</router-link></li>
@@ -28,6 +27,21 @@ export default {
 </script>
 
 <style>
+/* iPhone 5 fix */
+@media screen and (max-width: 340px) {
+  .pure-menu-horizontal {
+    zoom: 0.9 !important;
+  }
+}
+
+.pure-menu {
+  overflow: hidden;
+}
+
+.pure-menu-list {
+  float: right;
+}
+
 .pure-menu-horizontal {
   margin-top: 10px;
 }
