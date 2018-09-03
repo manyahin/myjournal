@@ -9,41 +9,55 @@ Builed on top of loopback and vuejs.
     # set password
     echo 'DIARY_PASSWORD=123456' > .docker-env
 
-## Start development
+## Development
 
-    # start database
-    docker-compose up -d db
-    
-    # start loopback server and vuejs dev env
-    yarn dev
-    cd client && yarn dev
+```bash
+# start database
+docker-compose up -d db
 
-## In Production
+# start api loopback
+npm install
+yarn dev
 
-    # clone repo
-    git clone https://github.com/manyahin/mydiary.git
-    cd mydiary
-    
-    # set password
-    echo 'DIARY_PASSWORD=123456' > .docker-env
+# start client part (in new terminal)
+cd client
+npm install
+yarn dev
+```
 
-    # build
-    docker-compose build
+## Production
 
-    # start production
-    npm run prod
+```bash
+# clone repo
+git clone https://github.com/manyahin/mydiary.git
+cd mydiary
+
+# set password
+echo 'DIARY_PASSWORD=123456' > .docker-env
+
+# build
+docker-compose build
+
+# start production
+npm run prod
+```
 
 # Backup
 
-The backup system will make tar arhchive in backup folder and will upload it to Dropbox
+The backup script will make tar.gz archive in backup folder and will upload it to Dropbox
 
-    # setup dropbox app token (only once)
-    /backup/dropbox_uploader.sh
-    # run script
-    /backup/run.sh
+```bash
+# setup dropbox app token (only once)
+/backup/dropbox_uploader.sh
+
+# run script
+/backup/run.sh
+```
 
 Restore DB by next command:
 
-    tar -zxvf $FILE.tar.gz
-    docker run --rm --network mydiary_default -v "$(pwd)/mongo_db":/backup \
-      mongo:3.4 bash -c 'mongorestore /backup --host db:27017'
+```bash
+tar -zxvf $FILE.tar.gz
+docker run --rm --network mydiary_default -v "$(pwd)/mongo_db":/backup \
+  mongo:3.4 bash -c 'mongorestore /backup --host db:27017'
+```
