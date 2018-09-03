@@ -1,6 +1,6 @@
-# client_webpack_full
+# My Private Diary Client
 
-> A Vue.js project
+A front-end part for My Private Diary
 
 ## Build Setup
 
@@ -25,7 +25,3 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-## ToDo
-
-* Change read route

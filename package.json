@@ -1,6 +1,6 @@
 {
-  "name": "my_diary",
-  "description": "My Diary",
+  "name": "my_private_diary",
+  "description": "Your own private diary",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
   "version": "1.0.0",
   "main": "server/server.js",
@@ -31,8 +31,8 @@
     "nsp": "^2.1.0"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "https://github.com/manyahin/mydiary"
   },
-  "license": "UNLICENSED"
+  "license": "MIT"
 }
