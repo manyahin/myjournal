@@ -23,6 +23,9 @@ yarn dev
 cd client
 npm install
 yarn dev
+
+# optional, set host to check from another device
+HOST=10.0.0.1 yarn dev
 ```
 
 ## Production
