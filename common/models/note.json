@@ -8,6 +8,10 @@
     "body": {
       "type": "string",
       "required": true
+    },
+    "favorite": {
+      "type": "bool",
+      "default": false
     }
   },
   "validations": [],

@@ -24,8 +24,7 @@ export default {
   props: {
     notes: {
       type: Array
-    },
-    starIcon: 'star-48.png'
+    }
   },
   computed: {
     sortedNotes () {
@@ -42,12 +41,6 @@ export default {
       })
 
       return sortedNotes
-    }
-  },
-  methods: {
-    favorite (note) {
-      console.log(note)
-      note.favorite = !note.favorite
     }
   }
 }
