@@ -45,6 +45,15 @@ docker-compose build
 npm run prod
 ```
 
+### Update
+
+```bash
+git pull origin master
+sudo docker-compose build
+sudo docker rm -f mydiary_web_1
+sudo npm run prod
+```
+
 # Backup
 
 The backup script will make tar.gz archive in backup folder and will upload it to Dropbox
