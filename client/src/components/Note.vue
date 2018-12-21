@@ -28,8 +28,7 @@ export default {
   methods: {
     favorite () {
       this.note.favorite = !this.note.favorite
-
-      axios.patch('Notes/' + this.note.id, { favorite: this.note.favorite });
+      axios.patch('Notes/' + this.note.id, { favorite: this.note.favorite })
     }
   }
 }
