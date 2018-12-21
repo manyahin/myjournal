@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="pure-form">
+    <form class="pure-form" @submit.prevent="saveNote">
       <fieldset>
         <textarea
           placeholder="What happened?"
@@ -50,9 +50,7 @@ export default {
       this.notes = data
       this.loading = false
     },
-    saveNote (e) {
-      if (e) e.preventDefault()
-
+    saveNote () {
       this.message = ''
       this.loading = true
 

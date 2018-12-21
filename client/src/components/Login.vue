@@ -1,5 +1,5 @@
 <template>
-  <form class="pure-form pure-form-stacked">
+  <form class="pure-form pure-form-stacked" @submit.prevent="login">
     <fieldset>
         <h3>My Diary</h3>
 
@@ -17,7 +17,7 @@
         </label>
         -->
 
-        <button @click="login" type="submit" class="pure-button pure-button-primary">Sign in</button>
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
 
         <p v-if="errorMessage" class="red">{{ errorMessage }}</p>
         <p v-if="notifyMessage">{{ notifyMessage }}</p>
@@ -40,8 +40,6 @@ export default {
   },
   methods: {
     login (e) {
-      if (e) e.preventDefault()
-
       this.resetMessages()
 
       axios.post('Customers/login', {
