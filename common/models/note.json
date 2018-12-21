@@ -1,6 +1,11 @@
 {
   "name": "Note",
   "properties": {
+    "id": {
+      "type": "string",
+      "id": true,
+      "generated": true
+    },
     "created_at": {
       "type": "date",
       "required": true
@@ -8,6 +13,10 @@
     "body": {
       "type": "string",
       "required": true
+    },
+    "favorite": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],

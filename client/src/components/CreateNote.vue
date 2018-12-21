@@ -72,7 +72,8 @@ export default {
       this.notes.unshift({
         id: data.id,
         created_at: data.created_at,
-        body: data.body
+        body: data.body,
+        favorite: false
       })
 
       this.message = `Written ${data.count_symbols} symbols`

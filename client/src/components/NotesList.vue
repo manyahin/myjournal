@@ -4,8 +4,8 @@
       <li v-for="(notes, index) in sortedNotes" :key="index">
         <h4>{{ new Date(parseInt(index)) | moment("dddd, MMM Do YY") }}</h4>
         <ul>
-          <li v-for="(note, i) in notes" :key="i" class="note">
-            <small>{{ note.created_at | moment('HH:mm') }} - </small>{{ note.body }}
+          <li v-for="(note, i) in notes" :key="i">
+            <note :note="note"></note>
           </li>
         </ul>
       </li>
@@ -15,7 +15,12 @@
 
 <script>
 
+import Note from '@/components/Note'
+
 export default {
+  components: {
+    Note
+  },
   props: {
     notes: {
       type: Array
@@ -42,6 +47,10 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
 .notes {
   word-wrap: break-word
 }
@@ -49,9 +58,7 @@ ul {
   list-style: none;
   padding-left: 0;
 }
-li.note {
-  margin-bottom: 10px;
-  line-height: 1.3em;
-  white-space: pre-line;
+ul li {
+  /*border: 1px solid rgba(1,1,1,0.2);*/
 }
 </style>
