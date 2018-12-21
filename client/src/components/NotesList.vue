@@ -58,7 +58,4 @@ ul {
   list-style: none;
   padding-left: 0;
 }
-ul li {
-  /*border: 1px solid rgba(1,1,1,0.2);*/
-}
 </style>

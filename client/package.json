@@ -1,6 +1,6 @@
 {
   "name": "my_private_diary_client",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A front-end part for My Private Diary",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
   "scripts": {
