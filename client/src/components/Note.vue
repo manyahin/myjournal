@@ -3,7 +3,7 @@
     <div class="header pure-g">
       <div class="time pure-u-1-2">{{ note.created_at | moment('HH:mm') }}</div>
       <div class="actions pure-u-1-2">
-        <img @click="note.favorite = !note.favorite" :src="starIconSrc" alt="star" class="star-icon" :class="{opacity: !note.favorite}">
+        <img @click="favorite" :src="starIconSrc" alt="star" class="star-icon" :class="{opacity: !note.favorite}">
       </div>
     </div>
     <div class="body">{{ note.body }}</div>
@@ -11,6 +11,9 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   props: {
     note: {
@@ -20,6 +23,13 @@ export default {
   computed: {
     starIconSrc () {
       return '/static/' + (this.note.favorite ? 'star_filled.png' : 'star.png')
+    }
+  },
+  methods: {
+    favorite () {
+      this.note.favorite = !this.note.favorite
+
+      axios.patch('Notes/' + this.note.id, { favorite: this.note.favorite });
     }
   }
 }
