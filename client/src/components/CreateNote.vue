@@ -15,7 +15,7 @@
             <img v-show="loading" src="static/ajax-loader.gif" alt="Loading...">
           </div>
           <div class="pure-u-1-3">
-            <button class="pure-button" :disabled="loading" @click="saveNote" type="submit">Write</button>
+            <button class="pure-button" :disabled="loading" type="submit">Write</button>
           </div>
         </div>
       </fieldset>
