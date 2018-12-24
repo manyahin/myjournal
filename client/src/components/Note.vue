@@ -49,7 +49,7 @@ export default {
 .note .time {
   color: grey;
   line-height: 26px;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 100;
 }
 .star-icon {
