@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import CreateNote from '@/components/CreateNote'
 import ReadPage from '@/components/ReadPage'
+import CalendarPage from '@/components/CalendarPage'
 import PageNotFound from '@/components/PageNotFound'
 import Login from '@/components/Login'
 
@@ -37,6 +38,11 @@ const router = new Router({
     {
       path: '/read',
       component: ReadPage,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/calendar',
+      component: CalendarPage,
       meta: { requiresAuth: true }
     },
     {
