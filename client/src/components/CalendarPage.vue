@@ -225,7 +225,19 @@ import axios from 'axios'
 export default {
   async created () {
     const data = await this.getAllNotesHeaders()
-    console.log(data.shift())
+
+    if (!data.shift()) return
+
+    const firstDate = this.$moment(data.shift().created_at).startOf('day')
+    const currentDate = this.$moment(new Date())
+
+    let days = [firstDate]
+
+    while (days.slice(-1)[0] < currentDate) {
+      days.push(this.$moment(days.slice(-1)[0]).add(1, 'day').startOf('day'))
+    }
+
+    console.log(days)
   },
   methods: {
     async getAllNotesHeaders () {
