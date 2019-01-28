@@ -224,20 +224,38 @@ import axios from 'axios'
 
 export default {
   async created () {
-    const data = await this.getAllNotesHeaders()
+    // todo: check for empty result (new user)
+    const data = await this.getAllNotesHeaders() || []
 
-    if (!data.shift()) return
+    if (!data[0]) return
 
-    const firstDate = this.$moment(data.shift().created_at).startOf('day')
-    const currentDate = this.$moment(new Date())
+    const firstDate = this.$moment(data[0]).startOf('month')
+    const currentDate = this.$moment().startOf('day')
 
-    let days = [firstDate]
+    let dates = [firstDate]
 
-    while (days.slice(-1)[0] < currentDate) {
-      days.push(this.$moment(days.slice(-1)[0]).add(1, 'day').startOf('day'))
-    }
+    do {
+      dates.push(this.$moment(dates[dates.length - 1]).add(1, 'day').startOf('day'))
+    } while (dates[dates.length - 1] < currentDate)
 
-    console.log(days)
+    console.log(dates)
+
+    // rebase
+
+    let calendar = {}
+
+    dates.forEach(date => {
+      let year = date.format('YYYY')
+      let month = date.format('MMMM')
+      let day = date.format('D')
+
+      if (!calendar[year]) calendar[year] = {}
+      if (!calendar[year][month]) calendar[year][month] = {}
+
+      calendar[year][month][day] = {}
+    })    
+
+    console.log(calendar)
   },
   methods: {
     async getAllNotesHeaders () {
@@ -247,8 +265,10 @@ export default {
         },
         order: 'created_at ASC'
       }
+
       let { data } = await axios.get('Notes?filter=' + JSON.stringify(filter))
-      return data
+
+      return data.map(el => el.created_at)
     }
   }
 }
