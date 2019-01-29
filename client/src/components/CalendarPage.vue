@@ -1,12 +1,12 @@
 <template>
   <div class="calendar">
-    <div class="year" v-for="(year, yearId) in calendar">
+    <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
       <h2>{{ yearId }}</h2>
-      <div class="month" v-for="(month, monthId) in year">
+      <div class="month" v-for="(month, monthId) in year" :key="monthId">
         <h4>{{ monthId }}</h4>
         <ul class="day">
-          <li :class="{'active': day.cnt > 0 }" v-for="(day, dayId) in month">
-            {{ dayId }}  
+          <li :class="{'active': day.cnt > 0 }" v-for="(day, dayId) in month" :key="dayId">
+            {{ dayId }}
           </li>
         </ul>
       </div>
@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script>  
+<script>
 import axios from 'axios'
 
 export default {
@@ -28,7 +28,7 @@ export default {
     const data = await this.getAllNotesHeaders()
 
     // make list of available dates
-    const firstDate = this.$moment(data.firstDate).startOf('month')
+    const firstDate = data.firstDate.startOf('month')
     const currentDate = this.$moment().startOf('day')
 
     let dates = [firstDate]
@@ -36,8 +36,6 @@ export default {
     do {
       dates.push(this.$moment(dates[dates.length - 1]).add(1, 'day').startOf('day'))
     } while (dates[dates.length - 1] < currentDate)
-
-    console.log(dates)
 
     // prepare format for calendar
 
@@ -53,12 +51,10 @@ export default {
 
       preCalendar[year][month][day] = { cnt: 0 }
 
-      if (data.activities[date.format('L')]) {
-        preCalendar[year][month][day] = data.activities[date.format('L')]
+      if (data.activities[date.format('YYYY-MM-DD')]) {
+        preCalendar[year][month][day] = data.activities[date.format('YYYY-MM-DD')]
       }
     })
-
-    console.log(preCalendar)
 
     this.calendar = preCalendar
   },
@@ -75,14 +71,16 @@ export default {
 
       // make list of dates with cnt of posts
       const activities = data
-        .map(el => this.$moment(el.created_at).startOf('day').format('L'))
+        .map(el => el.created_at)
         .reduce((acc, curr) => {
-          if (acc.hasOwnProperty(curr)) {
-            acc[curr].cnt++
+          let ts = this.$moment(curr).startOf('day').format('YYYY-MM-DD')
+
+          if (acc.hasOwnProperty(ts)) {
+            acc[ts].cnt++
+          } else {
+            acc[ts] = {cnt: 1}
           }
-          else {
-            acc[curr] = {cnt: 1}
-          }
+
           return acc
         }, {})
 
@@ -91,8 +89,9 @@ export default {
       let firstDate = this.$moment(dates[0])
 
       dates.forEach(date => {
-        if (this.$moment(date) < firstDate) 
+        if (this.$moment(date) < firstDate) {
           firstDate = this.$moment(date)
+        }
       })
 
       return {
@@ -107,15 +106,18 @@ export default {
 <style>
 ul.day {
   list-style-type: none;
+  padding-left: 0;
 }
 
 ul.day li {
   display: inline-block;
   padding: 3px;
   border: 1px solid grey;
+  margin: 5px 5px 0 0;
 }
 
 ul.day li.active {
   background-color: lightgreen;
+  cursor: pointer;
 }
 </style>
