@@ -1,12 +1,15 @@
 <template>
   <div class="calendar">
+    <loading :status="loading"></loading>
     <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
       <h2>{{ yearId }}</h2>
       <div class="month" v-for="(month, monthId) in year" :key="monthId">
-        <h4>{{ monthId }}</h4>
-        <ul class="day">
+        <h3>{{ monthId }}</h3>
+        <ul class="days">
           <li :class="{'active': day.cnt > 0 }" v-for="(day, dayId) in month" :key="dayId">
-            <router-link :to="{ name: 'calendarDay', params: { date: day.format }}">{{ dayId }}</router-link>
+            <router-link :to="{ name: 'calendarDay', params: { date: day.format }}">
+              <div class="day">{{ dayId }}</div>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -16,12 +19,17 @@
 
 <script>
 import axios from 'axios'
+import Loading from '@/components/Loading.vue'
 
 export default {
   data () {
     return {
-      calendar: {}
+      calendar: {},
+      loading: true
     }
+  },
+  components: {
+    Loading
   },
   async created () {
     // todo: check for empty result (new user)
@@ -60,6 +68,7 @@ export default {
     })
 
     this.calendar = preCalendar
+    this.loading = false
   },
   methods: {
     async getAllNotesHeaders () {
@@ -107,19 +116,30 @@ export default {
 </script>
 
 <style>
-ul.day {
+ul.days {
   list-style-type: none;
   padding-left: 0;
 }
 
-ul.day li {
-  display: inline-block;
-  padding: 3px;
-  border: 1px solid grey;
-  margin: 5px 5px 0 0;
+ul.days li a {
+  text-decoration: none;
+  color: black;
 }
 
-ul.day li.active {
+ul.days li .day {
+  padding: 3px;
+  border: 1px solid grey;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+}
+
+ul.days li {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+}
+
+ul.days li.active {
   background-color: lightgreen;
   cursor: pointer;
 }

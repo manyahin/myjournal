@@ -27,10 +27,12 @@
 <script>
 import axios from 'axios'
 import NotesList from '@/components/NotesList'
+import Loading from '@/components/Loading'
 
 export default {
   components: {
-    NotesList
+    NotesList,
+    Loading
   },
   data () {
     return {

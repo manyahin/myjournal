@@ -7,7 +7,7 @@
         <button @click="loadOnlyStarredNotes">Only starred notes</button>
       </div>
     </div>
-    <p v-show="loading"><img src="static/ajax-loader.gif" alt="Loading..."></p>
+    <loading :status="loading"></loading>
     <notes-list :notes="notes"></notes-list>
   </div>
 </template>
@@ -15,10 +15,12 @@
 <script>
 import axios from 'axios'
 import NotesList from '@/components/NotesList'
+import Loading from '@/components/Loading'
 
 export default {
   components: {
-    NotesList
+    NotesList,
+    Loading
   },
   data () {
     return {
