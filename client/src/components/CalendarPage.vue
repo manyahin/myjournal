@@ -6,7 +6,7 @@
         <h4>{{ monthId }}</h4>
         <ul class="day">
           <li :class="{'active': day.cnt > 0 }" v-for="(day, dayId) in month" :key="dayId">
-            {{ dayId }}
+            <router-link :to="{ name: 'calendarDay', params: { date: day.format }}">{{ dayId }}</router-link>
           </li>
         </ul>
       </div>
@@ -49,10 +49,13 @@ export default {
       if (!preCalendar[year]) preCalendar[year] = {}
       if (!preCalendar[year][month]) preCalendar[year][month] = {}
 
-      preCalendar[year][month][day] = { cnt: 0 }
+      preCalendar[year][month][day] = {
+        format: date.format('YYYY-MM-DD'),
+        cnt: 0
+      }
 
       if (data.activities[date.format('YYYY-MM-DD')]) {
-        preCalendar[year][month][day] = data.activities[date.format('YYYY-MM-DD')]
+        preCalendar[year][month][day].cnt = data.activities[date.format('YYYY-MM-DD')].cnt
       }
     })
 

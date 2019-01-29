@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import CreateNote from '@/components/CreateNote'
 import ReadPage from '@/components/ReadPage'
 import CalendarPage from '@/components/CalendarPage'
+import CalendarDayPage from '@/components/CalendarDayPage'
 import PageNotFound from '@/components/PageNotFound'
 import Login from '@/components/Login'
 
@@ -42,7 +43,14 @@ const router = new Router({
     },
     {
       path: '/calendar',
+      name: 'calendar',
       component: CalendarPage,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/calendar/:date',
+      name: 'calendarDay',
+      component: CalendarDayPage,
       meta: { requiresAuth: true }
     },
     {
