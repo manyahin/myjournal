@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link :to="{ name: 'calendar' }">Back to Calendar</router-link>
-    <h3 v-show="notes.length == 0">No notes for this day</h3>
+    <h3 v-show="!notes.length">No notes for this day</h3>
     <notes-list :notes="notes"></notes-list>
     <router-link :to="{ name: 'calendarDay', params: { date: previousDay }}">Previous day</router-link>
     <router-link :to="{ name: 'calendarDay', params: { date: nextDay }}">Next day</router-link>
@@ -32,6 +32,8 @@ export default {
   },
   async created () {
     await this.getPostForSpecificDate()
+
+    this.handleKeys()
   },
   watch: {
     async '$route' (to, from) {
@@ -62,6 +64,21 @@ export default {
       let { data } = await axios.get('Notes?filter=' + JSON.stringify(filter))
 
       this.notes = data
+    },
+    handleKeys () {
+      window.addEventListener('keydown', e => {
+        if (e.keyCode === 39) { // right
+          this.goNextDay()
+        } else if (e.keyCode === 37) { // left
+          this.goPreviousDay()
+        }
+      })
+    },
+    goNextDay () {
+      this.$router.push({name: 'calendarDay', params: {date: this.nextDay}})
+    },
+    goPreviousDay () {
+      this.$router.push({name: 'calendarDay', params: {date: this.previousDay}})
     }
   }
 }
