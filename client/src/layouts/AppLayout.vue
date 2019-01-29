@@ -6,7 +6,6 @@
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><router-link class="pure-menu-link" to="/write">Write</router-link></li>
                 <li class="pure-menu-item"><router-link class="pure-menu-link" to="/read">Read</router-link></li>
-                <li class="pure-menu-item"><router-link class="pure-menu-link" to="/calendar">Calendar</router-link></li>
                 <li class="pure-menu-item"><a class="logout pure-menu-link" @click="logout">Logout</a></li>
             </ul>
         </div>

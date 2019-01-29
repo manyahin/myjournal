@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link class="pure-button link-to-calendar" to="/calendar">Open Calendar</router-link>
     <div class="filters pure-g">
       <div class="pure-u-1-1">
         Filters:
@@ -63,6 +64,10 @@ export default {
 
 <style>
 .filters {
+  margin-top: 10px;
+}
+
+.link-to-calendar {
   margin-top: 10px;
 }
 </style>
