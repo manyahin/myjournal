@@ -1,26 +1,33 @@
 <template>
-  <div>
-    <router-link :to="{ name: 'calendar' }">Back to Calendar</router-link>
-    <h3 v-show="!notes.length">No notes for this day</h3>
+  <div class="calendar-day">
+    <router-link :to="{ name: 'calendar' }" class="return-to-calendar">← Back to Calendar</router-link>
+    <loading :status="loading"></loading>
+    <h4 v-show="!notes.length && !loading">No notes found for this day</h4>
     <notes-list :notes="notes"></notes-list>
-    <router-link :to="{ name: 'calendarDay', params: { date: previousDay }}">Previous day</router-link>
-    <router-link :to="{ name: 'calendarDay', params: { date: nextDay }}">Next day</router-link>
+    <div class="nav">
+      <router-link class="pure-button next-day" :to="{ name: 'calendarDay', params: { date: previousDay }}">Previous day</router-link>
+      <router-link class="pure-button previous-day" :to="{ name: 'calendarDay', params: { date: nextDay }}">Next day</router-link>
+      <div style="clear: both;"></div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import NotesList from '@/components/NotesList'
+import Loading from '@/components/Loading'
 
 export default {
   data () {
     return {
       date: this.$moment(this.$route.params.date, 'YYYY-MM-DD'),
-      notes: []
+      notes: [],
+      loading: true
     }
   },
   components: {
-    NotesList
+    NotesList,
+    Loading
   },
   computed: {
     nextDay () {
@@ -31,14 +38,20 @@ export default {
     }
   },
   async created () {
+    this.loading = true
     await this.getPostForSpecificDate()
+    this.loading = false
 
-    this.handleKeys()
+    // todo: this thing doesn't work correctly
+    // this.handleKeys()
   },
   watch: {
     async '$route' (to, from) {
+      this.loading = true
+      this.notes = []
       this.date = this.$moment(this.$route.params.date, 'YYYY-MM-DD')
       await this.getPostForSpecificDate()
+      this.loading = false
     }
   },
   methods: {
@@ -85,5 +98,20 @@ export default {
 </script>
 
 <style>
+.return-to-calendar {
+  color: black;
+}
 
+.calendar-day {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.nav .next-day {
+  float: left;
+}
+
+.nav .previous-day {
+  float: right;
+}
 </style>
