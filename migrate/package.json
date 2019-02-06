@@ -1,13 +1,9 @@
 {
   "name": "migrate_mysql_to_mongodb",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
+  "description": "Migrate data from MySQL to MongoDB",
+  "main": "migrate.js",
+  "author": "Ilya Manyahin <i.manyahin@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "monk": "^6.0.5",

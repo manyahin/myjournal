@@ -12,7 +12,12 @@ import auth from '@/utils/auth.js'
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}/api/`
+let hostname = `${window.location.hostname}:${window.location.port}`
+if (process.env.NODE_ENV === 'development') {
+  hostname = `${window.location.hostname}:3000`
+}
+
+axios.defaults.baseURL = `${window.location.protocol}//${hostname}/api/`
 axios.defaults.headers.common['Authorization'] = auth.getToken()
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
