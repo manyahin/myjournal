@@ -20,7 +20,7 @@
         </div>
       </fieldset>
     </form>
-    <notes-list :notes="notes"></notes-list>
+    <notes-list :notes="notes" :loading="loading"></notes-list>
   </div>
 </template>
 
@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     async getNewestNotes () {
+      this.loading = true
       let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}')
 
       this.notes = data

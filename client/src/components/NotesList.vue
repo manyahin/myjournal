@@ -1,5 +1,6 @@
 <template>
   <section class="notes">
+    <h4 v-show="!notes.length && !loading">Notes not found</h4>
     <ul>
       <li v-for="(notes, index) in sortedNotes" :key="index">
         <h4>{{ new Date(parseInt(index)) | moment("dddd, MMM Do YY") }}</h4>
@@ -24,6 +25,9 @@ export default {
   props: {
     notes: {
       type: Array
+    },
+    loading: {
+      type: Boolean
     }
   },
   computed: {

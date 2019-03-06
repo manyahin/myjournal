@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(Note) {
 
   Note.beforeRemote('create', function(ctx, note, next) {

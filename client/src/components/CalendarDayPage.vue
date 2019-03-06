@@ -2,8 +2,7 @@
   <div class="calendar-day">
     <router-link :to="{ name: 'calendar' }" class="return-to-calendar">← Back to Calendar</router-link>
     <loading :status="loading"></loading>
-    <h4 v-show="!notes.length && !loading">No notes found for this day</h4>
-    <notes-list :notes="notes"></notes-list>
+    <notes-list :notes="notes" :loading="loading"></notes-list>
     <div class="nav">
       <router-link class="pure-button next-day" :to="{ name: 'calendarDay', params: { date: previousDay }}">Previous day</router-link>
       <router-link class="pure-button previous-day" :to="{ name: 'calendarDay', params: { date: nextDay }}">Next day</router-link>
