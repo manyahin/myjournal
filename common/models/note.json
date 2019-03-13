@@ -29,5 +29,8 @@
       "permission": "DENY"
     }
   ],
-  "methods": {}
+  "methods": {},
+  "indexes": {
+    "fullTextSearch" : { "body" : "text" }
+  }
 }

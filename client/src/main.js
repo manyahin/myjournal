@@ -10,6 +10,10 @@ import axios from 'axios'
 
 import auth from '@/utils/auth.js'
 
+// import PureCSS library
+import 'purecss/build/pure-min.css'
+import 'purecss/build/grids-responsive-min.css'
+
 Vue.config.productionTip = false
 
 let hostname = `${window.location.hostname}:${window.location.port}`

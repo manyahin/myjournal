@@ -1,10 +1,16 @@
 'use strict'
 
 module.exports = function(app) {
+
+  // execute autoupdate for Note model to create text search index
+  app.dataSources.db.autoupdate('Note', (err, res) => {
+    if (err) throw err;
+  })
+
+  // create default customer
   const DIARY_PASSWORD = process.env.DIARY_PASSWORD
   const Customer = app.models.Customer
 
-  // create default customer
   Customer.count((err, cnt) => {
     if (!cnt) {
       if (!DIARY_PASSWORD) {
