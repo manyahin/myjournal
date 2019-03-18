@@ -3,7 +3,8 @@
     <div class="header pure-g">
       <div class="time pure-u-1-2">{{ note.created_at | moment('HH:mm') }}</div>
       <div class="actions pure-u-1-2">
-        <img @click="favorite" :src="starIconSrc" alt="star" class="star-icon" :class="{opacity: !note.favorite}">
+        <img @click="favorite" :src="starIconSrc" :alt="!note.favorite ? 'star' : 'unstar'"
+          class="star-icon" :class="{opacity: !note.favorite}">
       </div>
     </div>
     <div class="body">{{ note.body }}</div>
@@ -11,7 +12,6 @@
 </template>
 
 <script>
-
 import axios from 'axios'
 
 export default {
@@ -19,6 +19,11 @@ export default {
     note: {
       type: Object
     }
+  },
+  created () {
+    // preload star icons
+    const imgs = ['/static/star.png', '/static/star_filled.png']
+    imgs.forEach(src => this.preLoadImage(src))
   },
   computed: {
     starIconSrc () {
@@ -29,35 +34,45 @@ export default {
     favorite () {
       this.note.favorite = !this.note.favorite
       axios.patch('Notes/' + this.note.id, { favorite: this.note.favorite })
+    },
+    preLoadImage (src) {
+      let img = new Image()
+      img.src = src
     }
   }
 }
 </script>
 
-<style scoped>
-.actions {
-  text-align: right;
-}
+<style scoped lang="scss">
 .note {
   padding: 8px 0;
   border-bottom: 1px solid rgba(1,1,1,0.1);
-}
-.note .body {
-  white-space: pre-line;
-  line-height: 1.3em;
-}
-.note .time {
-  color: grey;
-  line-height: 26px;
-  font-size: 20px;
-  font-weight: 100;
-}
-.star-icon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-.opacity {
-  opacity: 0.2;
+
+  .header {
+    .time {
+      color: grey;
+      line-height: 26px;
+      font-size: 20px;
+      font-weight: 100;
+    }
+
+    .actions {
+      text-align: right;
+
+      .star-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+
+        &.opacity {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
+  .body {
+    white-space: pre-line;
+    line-height: 1.3em;
+  }
 }
 </style>
