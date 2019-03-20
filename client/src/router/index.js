@@ -4,6 +4,7 @@ import CreateNote from '@/components/CreateNote'
 import ReadPage from '@/components/ReadPage'
 import CalendarPage from '@/components/CalendarPage'
 import CalendarDayPage from '@/components/CalendarDayPage'
+import NotePage from '@/components/NotePage'
 import PageNotFound from '@/components/PageNotFound'
 import Login from '@/components/Login'
 
@@ -52,6 +53,12 @@ const router = new Router({
       name: 'calendarDay',
       component: CalendarDayPage,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/note/:id',
+      name: 'note',
+      component: NotePage,
+      math: { requiresAuth: true }
     },
     {
       path: '*',

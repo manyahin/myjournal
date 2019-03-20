@@ -1,0 +1,2 @@
+store loading variable in global state
+and move all notes calls to note service

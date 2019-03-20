@@ -1,7 +1,12 @@
 <template>
   <div class="note">
     <div class="header pure-g">
-      <div class="time pure-u-1-2">{{ note.created_at | moment('HH:mm') }}</div>
+      <div class="time pure-u-1-2">
+        <router-link :to="{ name: 'note', params: { id: note.id } }">
+          <!-- TODO: here is error in moment -->
+          {{ note.created_at | moment('HH:mm') }}
+        </router-link>
+        </div>
       <div class="actions pure-u-1-2">
         <img @click="favorite" :src="starIconSrc" :alt="!note.favorite ? 'star' : 'unstar'"
           class="star-icon" :class="{opacity: !note.favorite}">
