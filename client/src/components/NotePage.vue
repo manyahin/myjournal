@@ -2,7 +2,7 @@
   <section>
     <h1>Note Page</h1>
     <note :note="note"></note>
-    <comments :comments="comments"></comments>
+    <comments :comments="comments" @onComment="addComment"></comments>
   </section>
 </template>
 
@@ -41,11 +41,19 @@ export default {
       this.comments = data.comments || []
 
       this.afterLoad()
+    },
+    async addComment (comment) {
+      this.comments.push(comment)
+
+      let { data } = await axios.patch(`Notes/${this.noteId}`, {
+        comments: this.comments
+      })
+
+      console.log(data)
     }
   }
 }
 </script>
 
 <style>
-
 </style>

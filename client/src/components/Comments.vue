@@ -1,11 +1,11 @@
 <template>
   <section class="comments">
     <ul>
-      <li v-for="(comment, index) in comments" :key="index">{{ comment }}</li>
-      <li>Comments</li>
-      <li>Comments 2</li>
-      <li>Comments 3</li>
-      <li>Comments 4</li>
+      <li v-for="(comment, index) in comments" :key="index">
+        <span>{{ comment.created_at | moment("dddd, MMM Do YY, HH:mm") }}</span>
+        <p>{{ comment.body }}</p>
+      </li>
+      <li>Test comment</li>
     </ul>
     <textarea v-model="newComment" name="" id="" cols="30" rows="10"></textarea>
     <button @click="addComment">Send</button>
@@ -26,7 +26,12 @@ export default {
   },
   methods: {
     addComment () {
-      this.$emit('onComment', this.newComment)
+      this.$emit('onComment', {
+        body: this.newComment,
+        created_at: new Date()
+      })
+
+      this.newComment = ''
     }
   }
 }
