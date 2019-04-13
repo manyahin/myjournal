@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CreateNote from '@/components/CreateNote'
+import WritePage from '@/components/WritePage'
 import ReadPage from '@/components/ReadPage'
 import CalendarPage from '@/components/CalendarPage'
 import CalendarDayPage from '@/components/CalendarDayPage'
@@ -33,7 +33,7 @@ const router = new Router({
     },
     {
       path: '/write',
-      component: CreateNote,
+      component: WritePage,
       meta: { requiresAuth: true }
     },
     {
