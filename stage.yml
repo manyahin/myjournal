@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  web:
+    image: mydiary:1.0
+    build: .
+    ports:
+      - "127.0.0.1:3001:3000"
+    environment:  
+      - NODE_ENV=production
+      - DIARY_PASSWORD=123456
+    links:
+      - db
+    restart: always
+
+  db:
+    image: mongo:3.4
+    restart: always
