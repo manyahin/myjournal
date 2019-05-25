@@ -61,7 +61,10 @@ export default {
       } else {
         $state.complete()
       }
-    }
+    },
+    addNote (note) {
+      this.notes.push(note)
+    } 
   }
 }
 </script>

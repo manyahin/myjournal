@@ -20,7 +20,7 @@
         </div>
       </fieldset>
     </form>
-    <infinite-notes-list order="desc" :key="lastUpdate"></infinite-notes-list>
+    <infinite-notes-list order="desc" ref="notes"></infinite-notes-list>
   </div>
 </template>
 
@@ -36,8 +36,7 @@ export default {
     return {
       body: '',
       message: '',
-      loading: false,
-      lastUpdate: 0
+      loading: false
     }
   },
   methods: {
@@ -56,12 +55,12 @@ export default {
       note.body = this.body
 
       NoteService.addNote(note)
-        .then(this.noteSaved)
+        .then(this.$refs.notes.addNote(note))
+        .then(this.successMessage)
         .then(this.clearBody)
     },
-    noteSaved ({data}) {
+    successMessage ({data}) {
       this.message = `Written ${data.count_symbols} symbols`
-      this.lastUpdate = +new Date()
     },
     clearBody () {
       this.body = ''
