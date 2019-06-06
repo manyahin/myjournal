@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Note Page</h1>
+    <h2>Note Page</h2>
     <note :note="note" :options="{fullDate: true, showLink: false}"></note>
     <comments :comments="comments" @onComment="addComment"></comments>
   </section>
@@ -45,11 +45,18 @@ export default {
     async addComment (comment) {
       this.comments.push(comment)
 
-      let { data } = await axios.patch(`Notes/${this.noteId}`, {
-        comments: this.comments
-      })
+      try {
+        let { data: note } = await axios.patch(`Notes/${this.noteId}`, {
+          comments: this.comments
+        })
 
-      console.log(data)
+        this.comments = note.comments
+        // succefful notification
+      }
+      catch (error) {
+        console.error(error)
+      }
+      
     }
   }
 }

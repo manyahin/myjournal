@@ -1,5 +1,0 @@
-store loading variable in global state
-and move all notes calls to note service
-
-AXEToday at 6:28 PM
-i would write a data fetching component for that then pass result via scoped slot
