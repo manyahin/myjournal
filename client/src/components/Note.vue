@@ -45,7 +45,7 @@ export default {
     noteCreatedTime () {
       return this.config.fullDate
         ? this.$moment(this.note.created_at).format('MMMM Do YYYY, h:mm:ss a')
-        : this.$moment(this.note.created_at).format('HH:mm');
+        : this.$moment(this.note.created_at).format('HH:mm')
     },
     starIconSrc () {
       return '/static/' + (this.note.favorite ? 'star_filled.png' : 'star.png')

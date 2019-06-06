@@ -43,7 +43,7 @@ export default {
       if (ctrlKey || metaKey) {
         this.addComment()
       }
-    },
+    }
   }
 }
 </script>
