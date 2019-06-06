@@ -1,5 +1,5 @@
 import { mount } from 'vue-test-utils'
-import CreateNote from '@/components/CreateNote'
+import WritePage from '@/components/WritePage'
 
 jest.mock('axios', () => {
   return {
@@ -29,11 +29,11 @@ jest.mock('axios', () => {
   }
 })
 
-describe('CreateNote.vue', () => {
+describe('WritePage.vue', () => {
   let wrp
 
   beforeEach(() => {
-    wrp = mount(CreateNote)
+    wrp = mount(WritePage)
   })
 
   it('show warning on empty note', (done) => {

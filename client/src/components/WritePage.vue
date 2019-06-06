@@ -20,39 +20,26 @@
         </div>
       </fieldset>
     </form>
-    <notes-list :notes="notes" :loading="loading"></notes-list>
+    <infinite-notes-list order="desc" ref="notes"></infinite-notes-list>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import NotesList from '@/components/NotesList'
-import Loading from '@/components/Loading'
+import NoteService from '@/services/NoteService'
+import InfiniteNotesList from '@/components/InfiniteNotesList'
 
 export default {
   components: {
-    NotesList,
-    Loading
+    InfiniteNotesList
   },
   data () {
     return {
       body: '',
       message: '',
-      notes: [],
-      loading: true
+      loading: false
     }
   },
-  created () {
-    this.getNewestNotes()
-  },
   methods: {
-    async getNewestNotes () {
-      this.loading = true
-      let { data } = await axios.get('Notes?filter={"limit":"50", "order": "created_at DESC"}')
-
-      this.notes = data
-      this.loading = false
-    },
     saveNote () {
       this.message = ''
       this.loading = true
@@ -67,28 +54,22 @@ export default {
       note.created_at = new Date()
       note.body = this.body
 
-      axios.post('Notes', note)
-        .then(this.noteSaved)
+      NoteService.addNote(note)
+        .then(this.$refs.notes.addNote(note))
+        .then(this.successMessage)
         .then(this.clearBody)
     },
-    noteSaved ({data}) {
-      this.notes.unshift({
-        id: data.id,
-        created_at: data.created_at,
-        body: data.body,
-        favorite: false
-      })
-
+    successMessage ({data}) {
       this.message = `Written ${data.count_symbols} symbols`
+    },
+    clearBody () {
+      this.body = ''
+      this.loading = false
     },
     handleCmdEnter ({ctrlKey, metaKey}) {
       if (ctrlKey || metaKey) {
         this.saveNote()
       }
-    },
-    clearBody () {
-      this.body = ''
-      this.loading = false
     }
   }
 }

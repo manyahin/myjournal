@@ -4,77 +4,56 @@
     <div class="filters pure-g">
       <div class="pure-u-1 pure-u-sm-1-2">
         Filters:
-        <button @click="loadAllNotes">All notes</button>
-        <button @click="loadOnlyStarredNotes">Only starred notes</button>
+        <button @click="readAllNotes">All notes</button>
+        <button @click="readStarredNotes">Only starred notes</button>
       </div>
-      <div class="pure-u-1 pure-u-sm-1-2">
-        <search @onSubmit="loadBySearch"></search>
+      <div class="pure-u-1 pure-u-sm-1-2 search-form">
+        <form id="submit" @submit.prevent="readBySearch">
+          <input required type="text" placeholder="text to search" v-model="searchText">
+          <button type="submit">Search</button>
+        </form>
       </div>
     </div>
-    <loading :status="loading"></loading>
-    <notes-list :notes="notes" :loading="loading"></notes-list>
+    <infinite-notes-list order="asc" :key="infiniteId" :filter="filter"></infinite-notes-list>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import NotesList from '@/components/NotesList'
-import Loading from '@/components/Loading'
-import Search from '@/components/Search'
+import InfiniteNotesList from '@/components/InfiniteNotesList'
 
 export default {
   components: {
-    NotesList,
-    Loading,
-    Search
+    InfiniteNotesList
   },
   data () {
     return {
-      notes: [],
-      loading: false
+      filter: {},
+      searchText: '',
+      infiniteId: +new Date()
     }
   },
-  async created () {
-    await this.loadAllNotes()
-  },
   methods: {
-    async loadOnlyStarredNotes () {
-      this.beforeLoad()
-      let filter = {
+    readAllNotes () {
+      this.filter = {}
+      this.infiniteId += 1
+    },
+    readStarredNotes () {
+      this.filter = {
         where: {
           favorite: true
-        },
-        order: 'created_at DESC'
+        }
       }
-      let { data } = await axios.get('Notes?filter=' + JSON.stringify(filter))
-      this.notes = data
-      this.afterLoad()
+      this.infiniteId += 1
     },
-    async loadAllNotes () {
-      this.beforeLoad()
-      let { data } = await axios.get('Notes?filter={"order": "created_at ASC"}')
-      this.notes = data
-      this.afterLoad()
-    },
-    async loadBySearch (text) {
-      this.beforeLoad()
-      let filter = {
+    readBySearch () {
+      this.filter = {
         where: {
           '$text': {
-            search: text
+            search: this.searchText
           }
         }
       }
-      let { data } = await axios.get('Notes?filter=' + JSON.stringify(filter))
-      this.notes = data
-      this.afterLoad()
-    },
-    beforeLoad () {
-      this.notes = []
-      this.loading = true
-    },
-    afterLoad () {
-      this.loading = false
+      this.infiniteId += 1
     }
   }
 }
@@ -87,5 +66,16 @@ export default {
 
 .link-to-calendar {
   margin-top: 10px;
+}
+
+.search-form {
+  text-align: right;
+}
+
+@media screen and (max-width: 35.5em) {
+  .search-form {
+    margin-top: 8px;
+    text-align: left;
+  }
 }
 </style>

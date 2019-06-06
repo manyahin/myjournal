@@ -12,7 +12,8 @@
     "start": "node .",
     "lint": "eslint .",
     "posttest": "npm run lint && nsp check",
-    "prod": "docker-compose -f production.yml up -d"
+    "prod": "docker-compose -f production.yml up -d",
+    "stage": "docker-compose -f stage.yml up -d"
   },
   "dependencies": {
     "compression": "^1.0.3",

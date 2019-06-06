@@ -5,17 +5,14 @@ services:
     image: mydiary:1.1
     build: .
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:3001:3000"
     environment:  
       - NODE_ENV=production
+      - DIARY_PASSWORD=123456
     links:
       - db
-    env_file:
-      - .docker-env
     restart: always
 
   db:
     image: mongo:3.4
-    volumes:
-      - './mongodb_data:/data/db'
     restart: always
