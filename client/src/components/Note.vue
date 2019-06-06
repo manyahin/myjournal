@@ -2,11 +2,13 @@
   <div class="note">
     <div class="header pure-g">
       <div class="time pure-u-1-2">
-        <router-link :to="{ name: 'note', params: { id: note.id } }">
-          <!-- TODO: here is error in moment -->
-          {{ note.created_at | moment('HH:mm') }}
+        <router-link v-if="config.showLink" :to="{ name: 'note', params: { id: note.id } }">
+          {{ noteCreatedTime }}
         </router-link>
-        </div>
+        <span v-else>
+          {{ noteCreatedTime }}
+        </span>
+      </div>
       <div class="actions pure-u-1-2">
         <img @click="favorite" :src="starIconSrc" :alt="!note.favorite ? 'star' : 'unstar'"
           class="star-icon" :class="{opacity: !note.favorite}">
@@ -23,6 +25,12 @@ export default {
   props: {
     note: {
       type: Object
+    },
+    options: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   created () {
@@ -31,6 +39,14 @@ export default {
     imgs.forEach(src => this.preLoadImage(src))
   },
   computed: {
+    config () {
+      return { showLink: true, fullDate: false, ...this.options }
+    },
+    noteCreatedTime () {
+      return this.config.fullDate
+        ? this.$moment(this.note.created_at).format('MMMM Do YYYY, h:mm:ss a')
+        : this.$moment(this.note.created_at).format('HH:mm');
+    },
     starIconSrc () {
       return '/static/' + (this.note.favorite ? 'star_filled.png' : 'star.png')
     }

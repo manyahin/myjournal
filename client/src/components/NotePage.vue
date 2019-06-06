@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>Note Page</h1>
-    <note :note="note"></note>
+    <note :note="note" :options="{fullDate: true, showLink: false}"></note>
     <comments :comments="comments" @onComment="addComment"></comments>
   </section>
 </template>
