@@ -52,7 +52,8 @@ export default {
 
         this.comments = note.comments
         // succefful notification
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error)
       }
     }
