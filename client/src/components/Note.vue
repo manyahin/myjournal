@@ -1,5 +1,5 @@
 <template>
-  <div class="note">
+  <section class="note">
     <div class="header pure-g">
       <div class="time pure-u-1-2">
         <router-link v-if="config.showLink" :to="{ name: 'note', params: { id: note.id } }">
@@ -15,11 +15,12 @@
       </div>
     </div>
     <div class="body">{{ note.body }}</div>
-  </div>
+  </section>
 </template>
 
 <script>
 import axios from 'axios'
+import NoteService from '@/services/NoteService'
 
 export default {
   props: {
@@ -54,7 +55,7 @@ export default {
   methods: {
     favorite () {
       this.note.favorite = !this.note.favorite
-      axios.patch('Notes/' + this.note.id, { favorite: this.note.favorite })
+      NoteService.favoriteNote(this.note)
     },
     preLoadImage (src) {
       let img = new Image()
@@ -91,8 +92,9 @@ export default {
       }
     }
   }
+
   .body {
-    white-space: pre-line;
+    white-space: pre-wrap;
     line-height: 1.3em;
   }
 }

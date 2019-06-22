@@ -7,5 +7,8 @@ export default {
   },
   async addNote (note) {
     return axios.post('Notes', note)
+  },
+  async favoriteNote (note) {
+    return axios.patch('Notes/' + note.id, { favorite: note.favorite })
   }
 }

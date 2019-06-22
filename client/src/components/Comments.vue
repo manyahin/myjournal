@@ -2,16 +2,17 @@
   <section class="comments">
     <ul>
       <li v-for="(comment, index) in comments" :key="index">
-        <span class="time">{{ comment.created_at | moment("MMM Do YYYY, HH:mm") }}</span>
-        <span class="body">{{ comment.body }}</span>
+        <section class="comment">
+          <div class="time">{{ comment.created_at | moment("MMM Do YYYY, HH:mm") }}</div>
+          <div class="body">{{ comment.body }}</div>
+        </section>
       </li>
     </ul>
-    <form class="pure-form" @submit.prevent="addComment">
-      <textarea v-model="newComment" autofocus="true"
-        required placeholder="What comment?"
+    <form class="pure-form new-comment" @submit.prevent="addComment">
+      <textarea v-model="newComment" required placeholder="What comment?"
         @keydown.enter="handleCmdEnter($event)"
       ></textarea>
-      <button class="pure-button" type="submit">Send</button>
+      <button class="pure-button" type="submit">Write</button>
     </form>
   </section>
 </template>
@@ -48,46 +49,44 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.comments {
-  .time {
-    font-size: 12px;
-  }
-  .body {
-    white-space: pre-line;
-  }
+<style scoped lang="scss">
+.comments { 
   li {
     margin-bottom: 10px;
   }
-  textarea {
-    width: 100%;
-    height: 100px;
-    border: 1px solid #0F595B;
-    border-radius: 4px;
-    display: block;
-    caret-color: grey;
-    padding: 5px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+
+  .comment {
+    .time {
+      font-size: 12px;
+    }
+    .body {
+      white-space: pre-wrap;
+    }
   }
-  /* Hack: autofocus attr cause red border since page loaded,
-     disable it for textarea */
-  textarea:required:invalid {
-    border: 1px solid #1A2943 !important;
-    color: white !important;
-  }
-  button[type="submit"] {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    border-radius: 4px;
-    background-color: #0F595B;
-    border: 1px solid #1A2943;
-    color: white;
-    padding: 4px 6px;
-    font-size: 20px;
-    font-weight: 200;
+
+  .new-comment {
+    textarea {
+      width: 100%;
+      height: 100px;
+      border: 1px solid #0F595B;
+      border-radius: 4px;
+      display: block;
+      caret-color: grey;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      border-radius: 4px;
+      background-color: #0F595B;
+      border: 1px solid #1A2943;
+      color: white;
+      padding: 4px 6px;
+      font-size: 20px;
+      font-weight: 200;
+    }
   }
 }
 </style>
