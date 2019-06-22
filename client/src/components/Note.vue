@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import NoteService from '@/services/NoteService'
 
 export default {

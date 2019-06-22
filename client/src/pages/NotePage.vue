@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import NoteService from '@/services/NoteService'
 
 import Note from '@/components/Note'
 import Comments from '@/components/Comments'
@@ -36,7 +36,8 @@ export default {
     async getNote () {
       this.beforeLoad()
 
-      let { data } = await axios.get(`Notes/${this.noteId}`)
+      // also here I should use try/catch but I want something general
+      let { data } = await NoteService.getNoteById(this.noteId)
       this.note = data
       this.comments = data.comments || []
 
@@ -46,15 +47,13 @@ export default {
       this.comments.push(comment)
 
       try {
-        let { data: note } = await axios.patch(`Notes/${this.noteId}`, {
-          comments: this.comments
-        })
-
-        this.comments = note.comments
-        // succefful notification
-      }
-      catch (error) {
-        console.error(error)
+        await NoteService.addCommentsToNote(this.note, this.comments)
+        // todo: succefful notification
+      } catch (err) {
+        alert('failed to add comment')
+        // this.comments.pop() we lost comment
+        // may use vuex to return last comment to textarea in comments component?
+        console.error(err)
       }
     }
   }

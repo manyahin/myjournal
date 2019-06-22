@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.comments { 
+.comments {
   li {
     margin-bottom: 10px;
   }
