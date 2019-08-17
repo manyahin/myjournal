@@ -18,6 +18,12 @@
             <button class="pure-button" :disabled="loading" type="submit">Write</button>
           </div>
         </div>
+        <div class="pure-g postDate">
+          <div class="pure-u-1-1">
+            <span>Post date:</span>
+            <date-picker first-day-of-week="1" width="150" :clearable="false" v-model="postDate" lang="en"></date-picker>
+          </div>
+        </div>
       </fieldset>
     </form>
     <infinite-notes-list order="desc" :key="lastUpdate"></infinite-notes-list>
@@ -27,17 +33,20 @@
 <script>
 import NoteService from '@/services/NoteService'
 import InfiniteNotesList from '@/components/InfiniteNotesList'
+import DatePicker from 'vue2-datepicker'
 
 export default {
   components: {
-    InfiniteNotesList
+    InfiniteNotesList,
+    DatePicker
   },
   data () {
     return {
       body: '',
       message: '',
       loading: false,
-      lastUpdate: 0
+      lastUpdate: 0,
+      postDate: new Date()
     }
   },
   methods: {
@@ -52,7 +61,7 @@ export default {
       }
 
       let note = {}
-      note.created_at = new Date()
+      note.created_at = this.postDate
       note.body = this.body
 
       NoteService.addNote(note)
@@ -109,5 +118,9 @@ export default {
   .message {
     font-size: 15px;
     margin-top: 15px;
+  }
+  .postDate {
+    margin-top: 10px;
+    text-align: right;
   }
 </style>
