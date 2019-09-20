@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "posttest": "npm run lint && nsp check",
     "prod": "docker-compose -f production.yml up -d",
-    "stage": "docker-compose -f stage.yml up -d"
+    "stage": "docker-compose -f stage.yml up -d",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -27,6 +28,7 @@
     "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
+    "cypress": "^3.4.1",
     "eslint": "^5.13.0",
     "eslint-config-loopback": "^8.0.0",
     "nsp": "^2.1.0"
