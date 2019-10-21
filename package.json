@@ -24,7 +24,8 @@
     "loopback-component-explorer": "^6.0.0",
     "loopback-connector-mongodb": "^3.6.0",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^3.0.0"
+    "strong-error-handler": "^3.0.0",
+    "telegraf": "^3.33.0"
   },
   "devDependencies": {
     "eslint": "^5.13.0",
