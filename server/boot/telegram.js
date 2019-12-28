@@ -34,5 +34,5 @@ module.exports = function(app) {
 
     bot.launch()
 
-    console.log('TELEGRAM BOT STARTED!')
+    console.log('Telegram Bot Started!')
 }
