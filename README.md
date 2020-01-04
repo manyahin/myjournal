@@ -63,7 +63,7 @@ npm run prod
 
 #### Stage
 
-    git pull origin master
+    git pull origin stage
     docker-compose -f stage.yml build
     docker rm -f mydiary_stage_web_1
     npm run stage
