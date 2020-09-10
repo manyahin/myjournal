@@ -4,7 +4,7 @@
   "description": "A front-end part for My Private Diary",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
+    "buefy": "^0.9.3",
     "moment": "^2.22.2",
     "purecss": "^1.0.0",
     "vue": "^2.6.8",
