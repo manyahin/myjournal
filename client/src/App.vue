@@ -1,5 +1,7 @@
 <template>
-  <component v-bind:is="layout"></component>
+  <div id="app">
+    <component v-bind:is="layout"></component>
+  </div>
 </template>
 
 <script>
@@ -25,8 +27,7 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 16px;
-  max-width: 700px;
+  max-width: 720px;
 }
 .nav {
   margin-bottom: 10px;

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <section>
     <div class="header">
         <div class="pure-menu pure-menu-horizontal">
             <a class="pure-menu-heading" href="">My Diary</a>
@@ -15,7 +15,7 @@
         </div>
     </div>
     <router-view/>
-  </div>
+  </section>
 </template>
 
 <script>

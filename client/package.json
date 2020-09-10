@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
+    "buefy": "^0.9.3",
     "moment": "^2.22.2",
-    "purecss": "^1.0.0",
     "vue": "^2.6.8",
     "vue-infinite-loading": "^2.4.4",
     "vue-moment": "^4.1.0",

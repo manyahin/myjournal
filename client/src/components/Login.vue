@@ -1,28 +1,39 @@
 <template>
-  <form class="pure-form pure-form-stacked" @submit.prevent="login">
-    <fieldset>
-        <h3>My Diary</h3>
+  <section class="container login box">
+    <h1 class="title">My Diary</h1>
+    <form @submit.prevent="login">
 
-        <!--
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="Email" v-model="email" required>
-        -->
+      <!-- <b-field class="email-field">
+        <b-input 
+          v-model="email"
+          icon="email"
+          type="email"
+          placeholder="Email" 
+          required>
+        </b-input>
+      </b-field> -->
 
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Password" v-model="password" required>
+      <b-field class="password-field">
+        <b-input 
+          v-model="password"
+          icon="lock"
+          type="password"
+          placeholder="Password" 
+          required>
+        </b-input>
+      </b-field>
 
-        <!--
-        <label for="remember" class="pure-checkbox">
-            <input id="remember" type="checkbox"> Remember me for a week
-        </label>
-        -->
+      <!-- <div class="field">
+        <b-checkbox v-model="rememberMe">Remember me for a week</b-checkbox>
+      </div> -->
 
-        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+      <b-button native-type="submit" type="is-primary">Sign in</b-button>
 
-        <p v-if="errorMessage" class="red">{{ errorMessage }}</p>
-        <p v-if="notifyMessage">{{ notifyMessage }}</p>
-      </fieldset>
-  </form>
+      <b-message v-show="message" :type="messageType" class="custom-message">
+        {{ message }}
+      </b-message>
+    </form>
+  </section>
 </template>
 
 <script>
@@ -33,14 +44,16 @@ export default {
   data () {
     return {
       email: 'user@mail.com',
+      // rememberMe: '',
       password: '',
-      errorMessage: '',
-      notifyMessage: ''
+      messageType: '',
+      message: ''
     }
   },
   methods: {
     login (e) {
-      this.resetMessages()
+      this.resetMessage()
+      this.message = 'Loading...'
 
       axios.post('Customers/login', {
         email: this.email,
@@ -48,30 +61,38 @@ export default {
       })
         .then(res => {
           localStorage.setItem('token', res.data.id)
-          this.notifyMessage = 'Loading...'
+
+          this.message = 'Success! Redirecting...'
+          this.messageType = 'is-success'
+
           window.location = '/'
         })
         .catch(err => {
-          this.errorMessage = _.get(err, 'response.data.error.message') || 'Connection problem'
+          this.message = _.get(err, 'response.data.error.message') || 'Connection problem'
+          this.messageType = 'is-danger'
         })
     },
-    resetMessages () {
-      this.errorMessage = ''
-      this.notifyMessage = ''
+    resetMessage () {
+      this.message = ''
+      this.messageType = ''
     }
   }
 }
 </script>
 
 <style scoped>
-form {
+.title {
+  font-family: "Merriweather", "Georgia", serif;
+  margin-bottom: 30px;
+}
+.login {
   margin: 50px auto;
-  width: 200px;
+  width: 300px;
 }
-button {
-  margin-top: 14px;
+.password-field {
+  height: 60px;
 }
-.red {
-  color: red;
+.custom-message {
+  margin-top: 25px;
 }
 </style>
