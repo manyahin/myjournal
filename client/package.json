@@ -1,6 +1,6 @@
 {
   "name": "my_private_diary_client",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A front-end part for My Private Diary",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
   "scripts": {
@@ -54,7 +54,7 @@
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
     "node-notifier": "^5.4.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "portfinder": "^1.0.20",

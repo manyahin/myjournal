@@ -18,26 +18,33 @@
             <button class="pure-button" :disabled="loading" type="submit">Write</button>
           </div>
         </div>
+        <div class="pure-g post-date">
+          <div class="pure-u-1-1">
+            <date-picker :postDate="postDate"></date-picker>
+          </div>
+        </div>
       </fieldset>
     </form>
-    <infinite-notes-list order="desc" :key="lastUpdate"></infinite-notes-list>
+    <infinite-notes-list order="desc" ref="notes"></infinite-notes-list>
   </div>
 </template>
 
 <script>
 import NoteService from '@/services/NoteService'
 import InfiniteNotesList from '@/components/InfiniteNotesList'
+import DatePicker from '@/components/DatePicker'
 
 export default {
   components: {
-    InfiniteNotesList
+    InfiniteNotesList,
+    DatePicker
   },
   data () {
     return {
       body: '',
       message: '',
       loading: false,
-      lastUpdate: 0
+      postDate: undefined
     }
   },
   methods: {
@@ -52,16 +59,16 @@ export default {
       }
 
       let note = {}
-      note.created_at = new Date()
+      note.created_at = this.postDate || new Date()
       note.body = this.body
 
       NoteService.addNote(note)
-        .then(this.noteSaved)
+        .then(this.$refs.notes.addNote(note))
+        .then(this.successMessage)
         .then(this.clearBody)
     },
-    noteSaved ({data}) {
+    successMessage ({data}) {
       this.message = `Written ${data.count_symbols} symbols`
-      this.lastUpdate = +new Date()
     },
     clearBody () {
       this.body = ''
@@ -109,5 +116,9 @@ export default {
   .message {
     font-size: 15px;
     margin-top: 15px;
+  }
+  .post-date {
+    margin-top: 10px;
+    text-align: right;
   }
 </style>
