@@ -13,7 +13,13 @@
       </b-field>-->
 
       <b-field class="password-field">
-        <b-input v-model="password" icon="lock" type="password" placeholder="Password" required></b-input>
+        <b-input
+          v-model="password"
+          icon="lock"
+          type="password"
+          placeholder="Password"
+          required
+        ></b-input>
       </b-field>
 
       <!-- <div class="field">
@@ -22,7 +28,9 @@
 
       <b-button native-type="submit" type="is-primary">Sign in</b-button>
 
-      <b-message v-show="message" :type="messageType" class="custom-message">{{ message }}</b-message>
+      <b-message v-show="message" :type="messageType" class="custom-message">{{
+        message
+      }}</b-message>
     </form>
   </section>
 </template>

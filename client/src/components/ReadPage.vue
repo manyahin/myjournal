@@ -1,20 +1,38 @@
 <template>
   <div>
-    <router-link class="pure-button link-to-calendar" to="/calendar">Open Calendar</router-link>
-    <div class="filters pure-g">
-      <div class="pure-u-1 pure-u-sm-1-2">
+    <router-link class="button link-to-calendar" to="/calendar"
+      >Open Calendar</router-link
+    >
+    <div class="columns filters">
+      <div class="column">
         Filters:
-        <button @click="readAllNotes">All notes</button>
-        <button @click="readStarredNotes">Only starred notes</button>
+        <b-button class="is-small" @click="readAllNotes">All notes</b-button>
+        <b-button class="is-small" @click="readStarredNotes"
+          >Only starred notes</b-button
+        >
       </div>
-      <div class="pure-u-1 pure-u-sm-1-2 search-form">
+      <div class="column search-form">
         <form id="submit" @submit.prevent="readBySearch">
-          <input required type="text" placeholder="text to search" v-model="searchText">
-          <button type="submit">Search</button>
+          <b-field position="is-right">
+            <b-input
+              size="is-small"
+              required
+              native-type="text"
+              placeholder="text to search"
+              v-model="searchText"
+            />
+            <p class="control">
+              <b-button class="is-small" native-type="submit">Search</b-button>
+            </p>
+          </b-field>
         </form>
       </div>
     </div>
-    <infinite-notes-list order="asc" :key="infiniteId" :filter="filter"></infinite-notes-list>
+    <infinite-notes-list
+      order="asc"
+      :key="infiniteId"
+      :filter="filter"
+    ></infinite-notes-list>
   </div>
 </template>
 
@@ -25,7 +43,7 @@ export default {
   components: {
     InfiniteNotesList
   },
-  data () {
+  data() {
     return {
       filter: {},
       searchText: '',
@@ -33,11 +51,11 @@ export default {
     }
   },
   methods: {
-    readAllNotes () {
+    readAllNotes() {
       this.filter = {}
       this.infiniteId += 1
     },
-    readStarredNotes () {
+    readStarredNotes() {
       this.filter = {
         where: {
           favorite: true
@@ -45,10 +63,10 @@ export default {
       }
       this.infiniteId += 1
     },
-    readBySearch () {
+    readBySearch() {
       this.filter = {
         where: {
-          '$text': {
+          $text: {
             search: this.searchText
           }
         }

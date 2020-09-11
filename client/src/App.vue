@@ -11,7 +11,7 @@ import LoginLayout from '@/layouts/LoginLayout'
 export default {
   name: 'App',
   computed: {
-    layout () {
+    layout() {
       return this.$store.getters.layout
     }
   },
@@ -28,6 +28,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 720px;
+  padding: 0 10px;
 }
 .nav {
   margin-bottom: 10px;

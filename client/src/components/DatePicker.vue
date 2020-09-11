@@ -20,20 +20,20 @@ export default {
   data() {
     return {
       showTimePanel: false,
-      selectedDate: undefined,
-    };
+      selectedDate: undefined
+    }
   },
   methods: {
     openDatePicker() {
-      console.log(this.$refs.datePicker.$el.querySelector("input"));
+      console.log(this.$refs.datePicker.$el.querySelector('input'))
       // this.$refs.datePicker.$el.querySelector('input').select()
-      this.$refs.datePicker.onFocus();
+      this.$refs.datePicker.onFocus()
     },
     toggleTimePanel() {
-      this.showTimePanel = !this.showTimePanel;
-    },
-  },
-};
+      this.showTimePanel = !this.showTimePanel
+    }
+  }
+}
 </script>
 
 <style>
