@@ -5,12 +5,9 @@
         <b-navbar-item tag="a" href="">My Diary</b-navbar-item>
       </template>
       <template slot="end">
-        <!-- TODO: add active color -->
         <b-navbar-item tag="router-link" to="/write">Write</b-navbar-item>
         <b-navbar-item tag="router-link" to="/read">Read</b-navbar-item>
-        <b-navbar-item tag="a" class="logout" to="/read" @click="logout"
-          >Logout</b-navbar-item
-        >
+        <b-navbar-item class="logout" @click="logout">Logout</b-navbar-item>
       </template>
     </b-navbar>
     <router-view />
@@ -29,9 +26,14 @@ export default {
 }
 </script>
 
-<style>
-a.logout {
-  cursor: pointer;
-  font-size: 9px;
+<style lang="scss">
+.navbar {
+  .router-link-active {
+    font-weight: bold;
+  }
+  .logout {
+    cursor: pointer;
+    font-size: 9px;
+  }
 }
 </style>

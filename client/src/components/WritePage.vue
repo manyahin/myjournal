@@ -5,13 +5,13 @@
         <b-input
           type="textarea"
           placeholder="What happened?"
-          autofocus="true"
           required
           v-model.trim="body"
           @keydown.enter="handleCmdEnter($event)"
         >
+          <!-- autofocus="true" - for textarea cause red border around -->
         </b-input>
-        <div class="columns">
+        <div class="columns controls is-mobile">
           <div class="column system-message">
             <span v-show="message">{{ message }}</span>
             <img
@@ -21,7 +21,9 @@
             />
           </div>
           <div class="column is-one-third">
-            <b-button native-type="submit" type="is-primary">Write</b-button>
+            <b-button native-type="submit" type="is-primary" :disabled="loading"
+              >Write</b-button
+            >
           </div>
         </div>
         <!-- <div class="columns">
@@ -90,18 +92,14 @@ export default {
 </script>
 
 <style scoped>
-/* Hack: autofocus attr cause red border since page loaded,
-     disable it for textarea */
-textarea:required:invalid {
-  border: 1px solid #1a2943 !important;
-  color: white !important;
-}
 button[type='submit'] {
   width: 100%;
 }
+.controls {
+  margin-top: 5px;
+}
 .system-message {
-  font-size: 15px;
-  margin-top: 15px;
+  line-height: 35px;
 }
 .post-date {
   margin-top: 10px;

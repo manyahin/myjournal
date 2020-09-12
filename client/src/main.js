@@ -4,7 +4,6 @@ import Vue from 'vue'
 import VueMoment from 'vue-moment'
 import axios from 'axios'
 import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
 
 import App from './App'
 import router from './router'
