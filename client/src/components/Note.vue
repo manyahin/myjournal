@@ -1,7 +1,9 @@
 <template>
   <div class="note">
-    <div class="header columns">
-      <div class="time column">{{ note.created_at | moment('HH:mm') }}</div>
+    <div class="header columns is-mobile">
+      <div class="time column heading">
+        {{ note.created_at | moment('HH:mm') }}
+      </div>
       <div class="actions column">
         <img
           @click="favorite"
@@ -12,7 +14,7 @@
         />
       </div>
     </div>
-    <div class="body">{{ note.body }}</div>
+    <div class="body content">{{ note.body }}</div>
   </div>
 </template>
 
@@ -54,6 +56,8 @@ export default {
   border-bottom: 1px solid rgba(1, 1, 1, 0.1);
 
   .header {
+    margin-bottom: 0;
+
     .time {
       color: grey;
       line-height: 26px;

@@ -2,6 +2,7 @@
   <section>
     <b-navbar>
       <template slot="brand">
+        <!-- why reload page? -->
         <b-navbar-item tag="a" href="">My Diary</b-navbar-item>
       </template>
       <template slot="end">

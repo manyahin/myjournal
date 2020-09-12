@@ -23,16 +23,13 @@ export default {
 </script>
 
 <style lang="scss">
-// disable navbar burger menu because menu is small enough
-$navbar-breakpoint: 300px;
-
-@import '~bulma/bulma';
+@import 'styles/main';
 
 #app {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 720px;
+  max-width: 700px;
   padding: 0 15px;
 }
 .nav {

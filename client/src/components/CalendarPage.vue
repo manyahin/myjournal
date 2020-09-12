@@ -1,9 +1,13 @@
 <template>
   <div class="calendar">
     <loading :status="loading"></loading>
-    <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
+    <div class="year title" v-for="(year, yearId) in calendar" :key="yearId">
       <h2>{{ yearId }}</h2>
-      <div class="month" v-for="(month, monthId) in year" :key="monthId">
+      <div
+        class="month subtitle"
+        v-for="(month, monthId) in year"
+        :key="monthId"
+      >
         <h3>{{ monthId }}</h3>
         <ul class="days">
           <li
@@ -140,9 +144,11 @@ ul.days li a {
 ul.days li .day {
   padding: 3px;
   border: 1px solid grey;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   text-align: center;
+  font-size: 14px;
+  word-break: keep-all;
 }
 
 ul.days li {

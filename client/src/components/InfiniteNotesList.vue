@@ -76,11 +76,13 @@ h4 {
 }
 .no-results {
   margin-bottom: 25px;
+  margin-top: 25px;
   color: grey;
   font-style: italic;
 }
 .no-more-notes {
   margin-bottom: 25px;
+  margin-top: 25px;
   color: grey;
   font-style: italic;
 }

@@ -7,7 +7,7 @@
           placeholder="What happened?"
           required
           v-model.trim="body"
-          @keydown.enter="handleCmdEnter($event)"
+          @keydown.enter.native="handleCmdEnter($event)"
         >
           <!-- autofocus="true" - for textarea cause red border around -->
         </b-input>
@@ -92,6 +92,9 @@ export default {
 </script>
 
 <style scoped>
+form {
+  margin-bottom: 15px;
+}
 button[type='submit'] {
   width: 100%;
 }

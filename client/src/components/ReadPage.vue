@@ -13,7 +13,7 @@
       </div>
       <div class="column search-form">
         <form id="submit" @submit.prevent="readBySearch">
-          <b-field position="is-right">
+          <b-field>
             <b-input
               size="is-small"
               required
@@ -84,16 +84,5 @@ export default {
 
 .link-to-calendar {
   margin-top: 10px;
-}
-
-.search-form {
-  text-align: right;
-}
-
-@media screen and (max-width: 35.5em) {
-  .search-form {
-    margin-top: 8px;
-    text-align: left;
-  }
 }
 </style>

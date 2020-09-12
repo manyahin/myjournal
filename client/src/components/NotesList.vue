@@ -2,7 +2,9 @@
   <section class="notes">
     <ul>
       <li v-for="(notes, index) in sortedNotes" :key="index">
-        <h4>{{ new Date(parseInt(index)) | moment('dddd, MMM Do YY') }}</h4>
+        <p class="heading day">
+          {{ new Date(parseInt(index)) | moment('dddd, MMM Do YY') }}
+        </p>
         <ul>
           <li v-for="(note, i) in notes" :key="i">
             <note :note="note"></note>
@@ -44,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+.day {
+  font-size: 14px;
+}
 .notes {
   word-wrap: break-word;
 }
