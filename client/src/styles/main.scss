@@ -1,3 +1,6 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
 // disable navbar burger menu because menu is small enough
 $navbar-breakpoint: 300px;
 
@@ -46,6 +49,8 @@ $card-shadow: 0 2px 3px rgba($grey-dark, 0.1), 0 0 0 1px rgba($grey-dark, 0.1);
 
 $control-height: 2.572em;
 
-@import '~bulma/bulma';
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
 // @import '~bulmaswatch/sandstone/_overrides.scss';

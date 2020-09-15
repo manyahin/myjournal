@@ -47,6 +47,7 @@ export default {
 
 <style scoped>
 .day {
+  margin-top: 1rem;
   font-size: 14px;
 }
 .notes {

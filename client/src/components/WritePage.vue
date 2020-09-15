@@ -26,11 +26,11 @@
             >
           </div>
         </div>
-        <!-- <div class="columns">
+        <div class="columns">
           <div class="column">
             <date-picker :postDate="postDate"></date-picker>
           </div>
-        </div> -->
+        </div>
       </fieldset>
     </form>
     <infinite-notes-list order="desc" ref="notes"></infinite-notes-list>
