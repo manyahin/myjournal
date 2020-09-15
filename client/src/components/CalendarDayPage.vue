@@ -1,11 +1,13 @@
 <template>
   <div class="calendar-day">
-    <router-link :to="{ name: 'calendar' }" class="return-to-calendar"
-      >← Back to Calendar</router-link
-    >
+    <div class="container top-nav">
+      <router-link :to="{ name: 'calendar' }" class="return-to-calendar"
+        >← Back to Calendar</router-link
+      >
+    </div>
     <loading :status="loading"></loading>
     <notes-list :notes="notes" :loading="loading"></notes-list>
-    <div class="nav">
+    <div class="bottom-nav">
       <router-link
         class="button next-day"
         :to="{ name: 'calendarDay', params: { date: previousDay } }"
@@ -111,21 +113,29 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.top-nav {
+  margin-bottom: 1rem;
+}
+
 .return-to-calendar {
   color: black;
+  margin-bottom: 1rem;
 }
 
 .calendar-day {
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.nav .next-day {
+.bottom-nav {
+  margin-top: 1rem;
+}
+
+.bottom-nav .next-day {
   float: left;
 }
 
-.nav .previous-day {
+.bottom-nav .previous-day {
   float: right;
 }
 </style>

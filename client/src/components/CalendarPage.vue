@@ -1,14 +1,10 @@
 <template>
   <div class="calendar">
     <loading :status="loading"></loading>
-    <div class="year title" v-for="(year, yearId) in calendar" :key="yearId">
-      <h2>{{ yearId }}</h2>
-      <div
-        class="month subtitle"
-        v-for="(month, monthId) in year"
-        :key="monthId"
-      >
-        <h3>{{ monthId }}</h3>
+    <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
+      <h2 class="title">{{ yearId }}</h2>
+      <div class="month" v-for="(month, monthId) in year" :key="monthId">
+        <h3 class="subtitle">{{ monthId }}</h3>
         <ul class="days">
           <li
             :class="{ active: day.cnt > 0 }"
@@ -134,6 +130,7 @@ export default {
 ul.days {
   list-style-type: none;
   padding-left: 0;
+  margin-bottom: 10px;
 }
 
 ul.days li a {
@@ -144,11 +141,12 @@ ul.days li a {
 ul.days li .day {
   padding: 3px;
   border: 1px solid grey;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   text-align: center;
   font-size: 14px;
   word-break: keep-all;
+  line-height: 16px;
 }
 
 ul.days li {
@@ -159,5 +157,12 @@ ul.days li {
 ul.days li.active {
   background-color: lightgreen;
   cursor: pointer;
+}
+.title {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.subtitle {
+  margin-bottom: 1rem !important;
 }
 </style>
