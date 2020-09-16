@@ -1,56 +1,33 @@
+// bulma free themes - https://jenil.github.io/bulmaswatch/
+
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
 // disable navbar burger menu because menu is small enough
 $navbar-breakpoint: 300px;
 
-// bulma free themes - https://jenil.github.io/bulmaswatch/
-// npm install bulmaswatch --save
+// Set your colors
+$primary: #325d88;
+$primary-invert: findColorInvert($primary);
 
-// @import '~bulmaswatch/sandstone/_variables.scss';
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert)
+);
 
-////////////////////////////////////////////////
-// SANDSTONE
-////////////////////////////////////////////////
-$grey-darker: #2a2a26;
-$grey-dark: #3e3f3a;
-$grey: #8e8c84;
-$grey-light: #c9c8b8;
-$grey-lighter: #e6e1d7;
-
-$white-ter: #f8f5f0;
-
-$orange: #f47c3c;
-$green: #93c54b;
-$blue: #29abe0;
-$red: #d9534f;
-
-$primary: #325d88 !default;
-$warning: $orange;
-$warning-invert: #fff;
-
-$family-sans-serif: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$body-size: 16px;
-
-$link: #8e8c84;
-
-$pagination-background-color: $grey-lighter;
-
-// $navbar-background-color: $grey-dark;
-// $navbar-item-color: $grey-light;
-// $navbar-item-hover-color: $white-ter;
-// $navbar-item-active-color: $white-ter;
-// $navbar-item-hover-background-color: $grey-darker;
-// $navbar-dropdown-arrow: $navbar-item-color;
-
-$bulmaswatch-import-font: true !default;
-
-$card-shadow: 0 2px 3px rgba($grey-dark, 0.1), 0 0 0 1px rgba($grey-dark, 0.1);
-
-$control-height: 2.572em;
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-
-// @import '~bulmaswatch/sandstone/_overrides.scss';
