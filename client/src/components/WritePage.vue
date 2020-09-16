@@ -11,6 +11,32 @@
         >
           <!-- autofocus="true" - for textarea cause red border around -->
         </b-input>
+
+        <b-collapse
+          :open="showSettings"
+          class="card"
+          animation="slide"
+          aria-id="settingsContent"
+        >
+          <div
+            slot="trigger"
+            slot-scope="props"
+            class="card-header"
+            role="button"
+            aria-controls="settingsContent"
+          >
+            <p class="card-header-title">Additional settings</p>
+            <a class="card-header-icon">
+              <b-icon :icon="props.open ? 'menu-up' : 'menu-down'"> </b-icon>
+            </a>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <date-picker :postDate="postDate"></date-picker>
+            </div>
+          </div>
+        </b-collapse>
+
         <div class="columns controls is-mobile">
           <div class="column system-message">
             <span v-show="message">{{ message }}</span>
@@ -24,11 +50,6 @@
             <b-button native-type="submit" type="is-primary" :disabled="loading"
               >Write</b-button
             >
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <date-picker :postDate="postDate"></date-picker>
           </div>
         </div>
       </fieldset>
@@ -52,7 +73,8 @@ export default {
       body: '',
       message: '',
       loading: false,
-      postDate: undefined
+      postDate: undefined,
+      showSettings: false
     }
   },
   methods: {
@@ -107,5 +129,8 @@ button[type='submit'] {
 .post-date {
   margin-top: 10px;
   text-align: right;
+}
+.settings {
+  padding: 0.75rem;
 }
 </style>

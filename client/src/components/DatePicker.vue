@@ -1,6 +1,6 @@
 <template>
   <div class="date-picker">
-    <b-field label="Select a date">
+    <b-field label="Select a date" label-position="on-border">
       <b-datepicker
         v-model="selectedDate"
         locale="en-US"
@@ -8,6 +8,11 @@
         icon="calendar-today"
         trap-focus
       ></b-datepicker>
+      <p class="control">
+        <b-button class="button is-danger" @click="selectedDate = null"
+          >Reset</b-button
+        >
+      </p>
     </b-field>
   </div>
 </template>
@@ -20,7 +25,7 @@ export default {
   data() {
     return {
       showTimePanel: false,
-      selectedDate: undefined
+      selectedDate: null
     }
   },
   methods: {
@@ -36,8 +41,8 @@ export default {
 }
 </script>
 
-<style>
-.hide {
-  display: none;
+<style scoped>
+.datepicker {
+  width: 100%;
 }
 </style>
