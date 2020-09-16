@@ -14,14 +14,14 @@
 
         <b-collapse
           :open="showSettings"
-          class="card"
+          class="card mt-4"
           animation="slide"
           aria-id="settingsContent"
         >
           <div
             slot="trigger"
             slot-scope="props"
-            class="card-header"
+            class="card-header is-shadowless"
             role="button"
             aria-controls="settingsContent"
           >
