@@ -3,15 +3,13 @@
     <b-field label="Select a date" label-position="on-border">
       <b-datepicker
         v-model="selectedDate"
-        locale="en-US"
+        locale="en-GB"
         placeholder="Click to select..."
         icon="calendar-today"
         trap-focus
       ></b-datepicker>
       <p class="control">
-        <b-button class="button is-danger" @click="selectedDate = null"
-          >Reset</b-button
-        >
+        <b-button class="button is-danger" @click="clearDate">Reset</b-button>
       </p>
     </b-field>
   </div>
@@ -19,23 +17,19 @@
 
 <script>
 export default {
-  // props: {
-  //   postDate
-  // },
   data() {
     return {
-      showTimePanel: false,
       selectedDate: null
     }
   },
   methods: {
-    openDatePicker() {
-      console.log(this.$refs.datePicker.$el.querySelector('input'))
-      // this.$refs.datePicker.$el.querySelector('input').select()
-      this.$refs.datePicker.onFocus()
-    },
-    toggleTimePanel() {
-      this.showTimePanel = !this.showTimePanel
+    clearDate() {
+      this.selectedDate = null
+    }
+  },
+  watch: {
+    selectedDate: function (date) {
+      this.$emit('selectDate', date)
     }
   }
 }

@@ -32,7 +32,10 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <date-picker :postDate="postDate"></date-picker>
+              <date-picker
+                ref="datePicker"
+                @selectDate="selectDate"
+              ></date-picker>
             </div>
           </div>
         </b-collapse>
@@ -73,7 +76,7 @@ export default {
       body: '',
       message: '',
       loading: false,
-      postDate: undefined,
+      postDate: null,
       showSettings: false
     }
   },
@@ -89,7 +92,14 @@ export default {
       }
 
       let note = {}
-      note.created_at = this.postDate || new Date()
+
+      if (this.postDate) {
+        note.created_at = this.postDate
+        note.custom_date = true
+      } else {
+        note.created_at = new Date()
+      }
+
       note.body = this.body
 
       NoteService.addNote(note)
@@ -103,11 +113,17 @@ export default {
     clearBody() {
       this.body = ''
       this.loading = false
+
+      this.postDate = null
+      this.$refs.datePicker.clearDate()
     },
     handleCmdEnter({ ctrlKey, metaKey }) {
       if (ctrlKey || metaKey) {
         this.saveNote()
       }
+    },
+    selectDate(date) {
+      this.postDate = date
     }
   }
 }

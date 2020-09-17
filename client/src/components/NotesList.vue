@@ -2,7 +2,7 @@
   <section class="notes">
     <ul>
       <li v-for="(notes, index) in sortedNotes" :key="index">
-        <p class="heading day">
+        <p class="heading day has-text-weight-semibold">
           {{ new Date(parseInt(index)) | moment('dddd, MMM Do YY') }}
         </p>
         <ul>

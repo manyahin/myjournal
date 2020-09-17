@@ -1,7 +1,7 @@
 <template>
   <div class="note">
     <div class="header columns is-mobile">
-      <div class="time column heading">
+      <div class="time column heading is-family-primary">
         {{ note.created_at | moment('HH:mm') }}
       </div>
       <div class="actions column">
