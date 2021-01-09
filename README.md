@@ -1,16 +1,16 @@
-# My Private Diary
+# My Diary
 
-This app alow you to simply setup your own private diary on your private server (like VPS) using Linux and Docker technology. To use with domain you need to configure web proxy server (like Nginx) on your server and setup your domain zone.
+This app alows you to setup your own private diary on your private server (like VPS) using Linux and Docker technologies. To use with a domain name you need to configure a web proxy server (like Nginx) on your server and setup your domain configuration.
 
-Backend builed on top of loopback.
+Backend built on Loopback 3. Frontend built on VueJS. Styles are on Bulma. 
 
-To access the diary use web ui builded on VueJS.
 Also, you can send messages to diary via Telegram bot (need to setup it before and get token, check https://core.telegram.org/bots)
 
 ## Setup
 
     # set password
     echo 'DIARY_PASSWORD=123456' > .docker-env
+
     # no enable telegram bot set next variables
     echo 'TELEGRAM_BOT_TOKEN=SDFDSF-SDFSDF-SDFDSF' >> .docker-env
     echo 'TELEGRAM_ALLOWED_USERS=myUser' >> .docker-env
@@ -24,15 +24,15 @@ docker-compose up -d db
 
 # start api loopback
 npm install
-yarn dev
+npm run dev # or via VSCode, Debug menu -> Launch Backend
 
 # start client part (in new terminal)
 cd client
 npm install
-yarn dev
+npm run dev
 
-# optional, set host to check from another device
-HOST=10.0.0.1 yarn dev
+# optional, set host to listen to check from another device
+HOST=10.0.0.1 npm run dev
 ```
 
 ## Production
@@ -43,7 +43,7 @@ git clone https://github.com/manyahin/mydiary.git
 cd mydiary
 
 # set password
-echo 'DIARY_PASSWORD=MySecretPassword123' > .docker-env
+echo 'DIARY_PASSWORD=123456' > .docker-env
 
 # build
 docker-compose build
@@ -76,7 +76,7 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 # setup dropbox app token (only once)
 /backup/dropbox_uploader.sh
 
-# run script
+# run script (and setup cron)
 /backup/run.sh
 ```
 

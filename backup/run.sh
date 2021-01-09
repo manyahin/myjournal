@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Make backup of database"
+echo "Make backup of database..."
 
 cd $(dirname $0)
 

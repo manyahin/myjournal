@@ -1,6 +1,6 @@
-# My Private Diary Client
+# My Diary Client
 
-A front-end part for My Private Diary
+A front-end part for My Diary
 
 ## Build Setup
 

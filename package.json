@@ -1,8 +1,8 @@
 {
-  "name": "my_private_diary",
+  "name": "my_diary_backend",
   "description": "Your own private diary",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "server/server.js",
   "engines": {
     "node": ">=4"
