@@ -1,13 +1,20 @@
 <template>
   <div class="note">
-    <div class="header pure-g">
-      <div class="time pure-u-1-2">{{ note.created_at | moment('HH:mm') }}</div>
-      <div class="actions pure-u-1-2">
-        <img @click="favorite" :src="starIconSrc" :alt="!note.favorite ? 'star' : 'unstar'"
-          class="star-icon" :class="{opacity: !note.favorite}">
+    <div class="header columns is-mobile">
+      <div class="time column heading is-family-primary">
+        {{ note.created_at | moment('HH:mm') }}
+      </div>
+      <div class="actions column">
+        <img
+          @click="favorite"
+          :src="starIconSrc"
+          :alt="!note.favorite ? 'star' : 'unstar'"
+          class="star-icon"
+          :class="{ opacity: !note.favorite }"
+        />
       </div>
     </div>
-    <div class="body">{{ note.body }}</div>
+    <div class="body content">{{ note.body }}</div>
   </div>
 </template>
 
@@ -20,22 +27,22 @@ export default {
       type: Object
     }
   },
-  created () {
+  created() {
     // preload star icons
     const imgs = ['/static/star.png', '/static/star_filled.png']
     imgs.forEach(src => this.preLoadImage(src))
   },
   computed: {
-    starIconSrc () {
+    starIconSrc() {
       return '/static/' + (this.note.favorite ? 'star_filled.png' : 'star.png')
     }
   },
   methods: {
-    favorite () {
+    favorite() {
       this.note.favorite = !this.note.favorite
       axios.patch('Notes/' + this.note.id, { favorite: this.note.favorite })
     },
-    preLoadImage (src) {
+    preLoadImage(src) {
       let img = new Image()
       img.src = src
     }
@@ -46,9 +53,11 @@ export default {
 <style scoped lang="scss">
 .note {
   padding: 8px 0;
-  border-bottom: 1px solid rgba(1,1,1,0.1);
+  border-bottom: 1px solid rgba(1, 1, 1, 0.1);
 
   .header {
+    margin-bottom: 0;
+
     .time {
       color: grey;
       line-height: 26px;

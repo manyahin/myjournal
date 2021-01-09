@@ -1,6 +1,6 @@
 <template>
   <div v-show="status" class="loading">
-    <img src="static/ajax-loader.gif" alt="Loading...">
+    <img src="static/ajax-loader.gif" alt="Loading..." />
     <span>Loading</span>
   </div>
 </template>

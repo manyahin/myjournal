@@ -1,18 +1,15 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VueMoment from 'vue-moment'
+import axios from 'axios'
+import Buefy from 'buefy'
+
 import App from './App'
 import router from './router'
 import { store } from './store'
 
-import VueMoment from 'vue-moment'
-import axios from 'axios'
-
 import auth from '@/utils/auth.js'
-
-// import PureCSS library
-import 'purecss/build/pure-min.css'
-import 'purecss/build/grids-responsive-min.css'
 
 Vue.config.productionTip = false
 
@@ -39,6 +36,7 @@ axios.interceptors.response.use(res => {
 })
 
 Vue.use(VueMoment)
+Vue.use(Buefy)
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,5 +1,7 @@
 <template>
-  <component v-bind:is="layout"></component>
+  <div id="app">
+    <component v-bind:is="layout"></component>
+  </div>
 </template>
 
 <script>
@@ -9,7 +11,7 @@ import LoginLayout from '@/layouts/LoginLayout'
 export default {
   name: 'App',
   computed: {
-    layout () {
+    layout() {
       return this.$store.getters.layout
     }
   },
@@ -20,13 +22,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'styles/main';
+
 #app {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 16px;
   max-width: 700px;
+  padding: 0 15px;
 }
 .nav {
   margin-bottom: 10px;

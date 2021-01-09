@@ -2,12 +2,18 @@
   <div class="calendar">
     <loading :status="loading"></loading>
     <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
-      <h2>{{ yearId }}</h2>
+      <h2 class="title">{{ yearId }}</h2>
       <div class="month" v-for="(month, monthId) in year" :key="monthId">
-        <h3>{{ monthId }}</h3>
+        <h3 class="subtitle">{{ monthId }}</h3>
         <ul class="days">
-          <li :class="{'active': day.cnt > 0 }" v-for="(day, dayId) in month" :key="dayId">
-            <router-link :to="{ name: 'calendarDay', params: { date: day.format }}">
+          <li
+            :class="{ active: day.cnt > 0 }"
+            v-for="(day, dayId) in month"
+            :key="dayId"
+          >
+            <router-link
+              :to="{ name: 'calendarDay', params: { date: day.format } }"
+            >
               <div class="day">{{ dayId }}</div>
             </router-link>
           </li>
@@ -22,7 +28,7 @@ import axios from 'axios'
 import Loading from '@/components/Loading.vue'
 
 export default {
-  data () {
+  data() {
     return {
       calendar: {},
       loading: true
@@ -31,7 +37,7 @@ export default {
   components: {
     Loading
   },
-  async created () {
+  async created() {
     // todo: check for empty result (new user)
     const data = await this.getAllNotesHeaders()
 
@@ -42,7 +48,11 @@ export default {
     let dates = [firstDate]
 
     do {
-      dates.push(this.$moment(dates[dates.length - 1]).add(1, 'day').startOf('day'))
+      dates.push(
+        this.$moment(dates[dates.length - 1])
+          .add(1, 'day')
+          .startOf('day')
+      )
     } while (dates[dates.length - 1] < currentDate)
 
     // prepare format for calendar
@@ -63,7 +73,8 @@ export default {
       }
 
       if (data.activities[date.format('YYYY-MM-DD')]) {
-        preCalendar[year][month][day].cnt = data.activities[date.format('YYYY-MM-DD')].cnt
+        preCalendar[year][month][day].cnt =
+          data.activities[date.format('YYYY-MM-DD')].cnt
       }
     })
 
@@ -71,7 +82,7 @@ export default {
     this.loading = false
   },
   methods: {
-    async getAllNotesHeaders () {
+    async getAllNotesHeaders() {
       const filter = {
         fields: {
           created_at: true
@@ -90,7 +101,7 @@ export default {
           if (acc.hasOwnProperty(ts)) {
             acc[ts].cnt++
           } else {
-            acc[ts] = {cnt: 1}
+            acc[ts] = { cnt: 1 }
           }
 
           return acc
@@ -119,6 +130,7 @@ export default {
 ul.days {
   list-style-type: none;
   padding-left: 0;
+  margin-bottom: 10px;
 }
 
 ul.days li a {
@@ -129,9 +141,12 @@ ul.days li a {
 ul.days li .day {
   padding: 3px;
   border: 1px solid grey;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   text-align: center;
+  font-size: 14px;
+  word-break: keep-all;
+  line-height: 16px;
 }
 
 ul.days li {
@@ -142,5 +157,12 @@ ul.days li {
 ul.days li.active {
   background-color: lightgreen;
   cursor: pointer;
+}
+.title {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.subtitle {
+  margin-bottom: 1rem !important;
 }
 </style>

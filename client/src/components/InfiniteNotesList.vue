@@ -31,19 +31,19 @@ export default {
     },
     filter: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     }
   },
-  data () {
+  data() {
     return {
       notes: [],
       page: 0
     }
   },
   methods: {
-    async infiniteHandler ($state) {
+    async infiniteHandler($state) {
       const notes = []
       const filter = {
         order: `created_at ${this.order}`,
@@ -52,7 +52,7 @@ export default {
         ...this.filter
       }
 
-      notes.push(...await NoteService.loadNotes(filter))
+      notes.push(...(await NoteService.loadNotes(filter)))
 
       if (notes.length) {
         this.notes.push(...notes)
@@ -61,6 +61,9 @@ export default {
       } else {
         $state.complete()
       }
+    },
+    addNote(note) {
+      this.notes.push(note)
     }
   }
 }
@@ -73,11 +76,13 @@ h4 {
 }
 .no-results {
   margin-bottom: 25px;
+  margin-top: 25px;
   color: grey;
   font-style: italic;
 }
 .no-more-notes {
   margin-bottom: 25px;
+  margin-top: 25px;
   color: grey;
   font-style: italic;
 }

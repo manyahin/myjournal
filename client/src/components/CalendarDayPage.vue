@@ -1,12 +1,24 @@
 <template>
   <div class="calendar-day">
-    <router-link :to="{ name: 'calendar' }" class="return-to-calendar">← Back to Calendar</router-link>
+    <div class="container top-nav">
+      <router-link :to="{ name: 'calendar' }" class="return-to-calendar"
+        >← Back to Calendar</router-link
+      >
+    </div>
     <loading :status="loading"></loading>
     <notes-list :notes="notes" :loading="loading"></notes-list>
-    <div class="nav">
-      <router-link class="pure-button next-day" :to="{ name: 'calendarDay', params: { date: previousDay }}">Previous day</router-link>
-      <router-link class="pure-button previous-day" :to="{ name: 'calendarDay', params: { date: nextDay }}">Next day</router-link>
-      <div style="clear: both;"></div>
+    <div class="bottom-nav">
+      <router-link
+        class="button next-day"
+        :to="{ name: 'calendarDay', params: { date: previousDay } }"
+        >Previous day</router-link
+      >
+      <router-link
+        class="button previous-day"
+        :to="{ name: 'calendarDay', params: { date: nextDay } }"
+        >Next day</router-link
+      >
+      <div style="clear: both"></div>
     </div>
   </div>
 </template>
@@ -17,7 +29,7 @@ import NotesList from '@/components/NotesList'
 import Loading from '@/components/Loading'
 
 export default {
-  data () {
+  data() {
     return {
       date: this.$moment(this.$route.params.date, 'YYYY-MM-DD'),
       notes: [],
@@ -29,14 +41,14 @@ export default {
     Loading
   },
   computed: {
-    nextDay () {
+    nextDay() {
       return this.$moment(this.date).add(1, 'day').format('YYYY-MM-DD')
     },
-    previousDay () {
+    previousDay() {
       return this.$moment(this.date).subtract(1, 'day').format('YYYY-MM-DD')
     }
   },
-  async created () {
+  async created() {
     this.loading = true
     await this.getPostForSpecificDate()
     this.loading = false
@@ -45,7 +57,7 @@ export default {
     // this.handleKeys()
   },
   watch: {
-    async '$route' (to, from) {
+    async $route(to, from) {
       this.loading = true
       this.notes = []
       this.date = this.$moment(this.$route.params.date, 'YYYY-MM-DD')
@@ -54,7 +66,7 @@ export default {
     }
   },
   methods: {
-    async getPostForSpecificDate () {
+    async getPostForSpecificDate() {
       const filter = {
         where: {
           and: [
@@ -77,40 +89,53 @@ export default {
 
       this.notes = data
     },
-    handleKeys () {
+    handleKeys() {
       window.addEventListener('keydown', e => {
-        if (e.keyCode === 39) { // right
+        if (e.keyCode === 39) {
+          // right
           this.goNextDay()
-        } else if (e.keyCode === 37) { // left
+        } else if (e.keyCode === 37) {
+          // left
           this.goPreviousDay()
         }
       })
     },
-    goNextDay () {
-      this.$router.push({name: 'calendarDay', params: {date: this.nextDay}})
+    goNextDay() {
+      this.$router.push({ name: 'calendarDay', params: { date: this.nextDay } })
     },
-    goPreviousDay () {
-      this.$router.push({name: 'calendarDay', params: {date: this.previousDay}})
+    goPreviousDay() {
+      this.$router.push({
+        name: 'calendarDay',
+        params: { date: this.previousDay }
+      })
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.top-nav {
+  margin-bottom: 1rem;
+}
+
 .return-to-calendar {
   color: black;
+  margin-bottom: 1rem;
 }
 
 .calendar-day {
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.nav .next-day {
+.bottom-nav {
+  margin-top: 1rem;
+}
+
+.bottom-nav .next-day {
   float: left;
 }
 
-.nav .previous-day {
+.bottom-nav .previous-day {
   float: right;
 }
 </style>

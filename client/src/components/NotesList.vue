@@ -2,7 +2,9 @@
   <section class="notes">
     <ul>
       <li v-for="(notes, index) in sortedNotes" :key="index">
-        <h4>{{ new Date(parseInt(index)) | moment("dddd, MMM Do YY") }}</h4>
+        <p class="heading day has-text-weight-semibold">
+          {{ new Date(parseInt(index)) | moment('dddd, MMM Do YY') }}
+        </p>
         <ul>
           <li v-for="(note, i) in notes" :key="i">
             <note :note="note"></note>
@@ -14,7 +16,6 @@
 </template>
 
 <script>
-
 import Note from '@/components/Note'
 
 export default {
@@ -25,7 +26,7 @@ export default {
     notes: Array
   },
   computed: {
-    sortedNotes () {
+    sortedNotes() {
       let sortedNotes = {}
 
       this.notes.forEach(note => {
@@ -45,8 +46,12 @@ export default {
 </script>
 
 <style scoped>
+.day {
+  margin-top: 1rem;
+  font-size: 14px;
+}
 .notes {
-  word-wrap: break-word
+  word-wrap: break-word;
 }
 ul {
   list-style: none;
