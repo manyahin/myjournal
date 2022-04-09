@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "purecss": "^1.0.0",
     "vue": "^2.6.8",
     "vue-infinite-loading": "^2.4.4",
