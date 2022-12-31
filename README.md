@@ -1,31 +1,47 @@
 # My Private Diary
 
-This app alow you to simply setup your own private diary on your private server (like VPS) using Linux and Docker technology. To use with domain you need to configure web proxy server (like Nginx) on your server and setup your domain zone.
+This app allows you to setup your own private diary using Docker. To use a custom domain for your diary you need to configure a web proxy server, like Nginx that can handle your domain zone, and probably TLS certificats, like "Let's Encrypt".
 
-Builed on top of loopback and vuejs.
+Built on top of Loopback 3 and VueJS 2.
 
 ## Setup
 
-    # set password
-    echo 'DIARY_PASSWORD=123456' > .docker-env
+```
+# set password for diary
+echo 'DIARY_PASSWORD=123456' > .docker-env
+```
 
 ## Development
 
+Node 11.15.0 is required
+
 ```bash
+# install nvm (https://github.com/nvm-sh/nvm)
+nvm install 11.15.0
+nvm use 11.15.0
+```
+
+add the next line to your hosts file
+>  127.0.0.1   db
+
+```bash
+# install base dev dependencies
+npm install --global nodemon
+
 # start database
-docker-compose up -d db
+docker compose up -d db
 
-# start api loopback
+# start back-end
 npm install
-yarn dev
+npm run dev
 
-# start client part (in new terminal)
+# start front-end (in a new terminal)
 cd client
 npm install
-yarn dev
+npm run dev
 
 # optional, set host to check from another device
-HOST=10.0.0.1 yarn dev
+HOST=10.0.0.1 npm run dev
 ```
 
 ## Production
@@ -66,7 +82,7 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 /backup/run.sh
 ```
 
-Restore DB by next command:
+## Restore DB
 
 ```bash
 tar -zxvf $FILE.tar.gz

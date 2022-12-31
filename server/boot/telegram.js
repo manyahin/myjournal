@@ -2,20 +2,23 @@
 
 const Telegraf = require('telegraf')
 
-// process.env.TELEGRAM_BOT_TOKEN
-// process.env.TELEGRAM_ALLOWED_USERS
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
+const TELEGRAM_ALLOWED_USERS = process.env.TELEGRAM_ALLOWED_USERS
 
 module.exports = function(app) {
+    // skip Telegram bot if no token found
+    if (!TELEGRAM_BOT_TOKEN) return
+
     const Note = app.models.Note
-    const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN)
-    const usersAllowed = process.env.TELEGRAM_ALLOWED_USERS ? process.env.TELEGRAM_ALLOWED_USERS.split(',') : []
+    const bot = new Telegraf(TELEGRAM_BOT_TOKEN)
+    const usersAllowed = TELEGRAM_ALLOWED_USERS ? TELEGRAM_ALLOWED_USERS.split(',') : []
 
     // filter by users
     bot.use((ctx, next) => {
         if (usersAllowed.includes(ctx.from.username)) next()
         else {
             console.log(`${ctx.from.username} tried to use this bot`)
-            ctx.reply('You do not have access to this bot. Go away!')
+            ctx.reply('You do not have the access to this bot. Go away!')
         }
     })
 
@@ -34,5 +37,5 @@ module.exports = function(app) {
 
     bot.launch()
 
-    console.log('Telegram Bot Started!')
+    console.log('Telegram Bot is started!')
 }
