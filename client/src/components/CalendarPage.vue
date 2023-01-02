@@ -5,7 +5,7 @@
       <p>Navigation by year:</p>
       <ul>
         <li v-for="(year, yearId) in calendar" :key="'li' + yearId">
-          <!-- todo: broke the URL -->
+          <!-- todo: it brokes the URL -->
           <a :href="'#' + yearId">{{ yearId }}</a>
         </li>
       </ul>
