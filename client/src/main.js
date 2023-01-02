@@ -7,6 +7,7 @@ import { store } from './store'
 
 import VueMoment from 'vue-moment'
 import axios from 'axios'
+import linkify from 'vue-linkify'
 
 import auth from '@/utils/auth.js'
 
@@ -15,6 +16,8 @@ import 'purecss/build/pure-min.css'
 import 'purecss/build/grids-responsive-min.css'
 
 Vue.config.productionTip = false
+
+Vue.directive('linkified', linkify)
 
 let hostname = `${window.location.hostname}:${window.location.port}`
 if (process.env.NODE_ENV === 'development') {

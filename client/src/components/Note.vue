@@ -7,7 +7,7 @@
           class="star-icon" :class="{opacity: !note.favorite}">
       </div>
     </div>
-    <div class="body">{{ note.body }}</div>
+    <div class="body" v-linkified>{{ note.body }}</div>
   </div>
 </template>
 

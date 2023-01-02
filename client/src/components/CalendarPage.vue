@@ -1,8 +1,17 @@
 <template>
   <div class="calendar">
     <loading :status="loading"></loading>
+    <nav >
+      <p>Navigation by year:</p>
+      <ul>
+        <li v-for="(year, yearId) in calendar" :key="'li' + yearId">
+          <!-- todo: it brokes the URL -->
+          <a :href="'#' + yearId">{{ yearId }}</a>
+        </li>
+      </ul>
+    </nav>
     <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
-      <h2>{{ yearId }}</h2>
+      <h2 :id="yearId">{{ yearId }}</h2>
       <div class="month" v-for="(month, monthId) in year" :key="monthId">
         <h3>{{ monthId }}</h3>
         <div class="v-month">
@@ -14,7 +23,9 @@
           <div class="v-weekday">F</div>
           <div class="v-weekday">S</div>
           <div class="v-day" v-for="index in month[1].weekday" :key="'PRE' + index"/>
-          <div class="v-day" v-for="(day, dayId) in month" :key="dayId" :class="{'active': day.cnt > 0 }">
+          <div class="v-day" v-for="(day, dayId) in month" :key="dayId"
+            :class="{'active': day.cnt > 0 }"
+            :style="generateBackgroundColor(day.cnt)" >
             <router-link :to="{ name: 'calendarDay', params: { date: day.format }}">
               <div class="day" :class="{'current': day.current == true }">{{ dayId }}</div>
             </router-link>
@@ -88,6 +99,13 @@ export default {
     this.loading = false
   },
   methods: {
+    generateBackgroundColor (cnt) {
+      if (cnt > 0) {
+        return {
+          'background-color': 'rgba(53, 157, 39, ' + (cnt / 10) + ')'
+        }
+      }
+    },
     getCountOfLeftDaysInMonth (month) {
       let dayNums = Object.keys(month).map(el => parseInt(el))
       let lastDay = month[Math.max.apply(null, dayNums)]
@@ -139,6 +157,20 @@ export default {
   margin-bottom: 20px;
 }
 
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: black;
+}
+
 .month {
   display: inline-block;
   margin-right: 10px;
@@ -175,7 +207,7 @@ export default {
 }
 
 .v-month .active {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   cursor: pointer;
 }
 </style>

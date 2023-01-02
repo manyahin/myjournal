@@ -61,13 +61,16 @@ docker-compose build
 npm run prod
 ```
 
-### Update
+### Update production
+
+For `web` service:
 
 ```bash
 git pull origin master
-sudo docker-compose build
-sudo docker rm -f mydiary_web_1
-sudo npm run prod
+docker-compose build web
+docker-compose down web
+docker-compose -f production.yml up -d web
+docker-compose logs web
 ```
 
 # Backup
