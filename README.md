@@ -68,7 +68,7 @@ For `web` service:
 ```bash
 git pull origin master
 docker-compose build web
-docker-compose down web
+docker-compose rm -s -v web
 docker-compose -f production.yml up -d web
 docker-compose logs web
 ```
