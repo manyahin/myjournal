@@ -1,8 +1,14 @@
 <template>
   <div class="calendar">
     <loading :status="loading"></loading>
+    <nav >
+      <p>Navigation by year:</p>
+      <ul>
+        <li v-for="(year, yearId) in calendar" :key="'li' + yearId"><a :href="'#' + yearId">{{ yearId }}</a></li>
+      </ul>
+    </nav>
     <div class="year" v-for="(year, yearId) in calendar" :key="yearId">
-      <h2>{{ yearId }}</h2>
+      <h2 :id="yearId">{{ yearId }}</h2>
       <div class="month" v-for="(month, monthId) in year" :key="monthId">
         <h3>{{ monthId }}</h3>
         <div class="v-month">
@@ -137,6 +143,20 @@ export default {
 <style>
 .calendar {
   margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: black;
 }
 
 .month {
