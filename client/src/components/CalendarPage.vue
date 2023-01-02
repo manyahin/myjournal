@@ -207,7 +207,6 @@ nav ul li a {
 }
 
 .v-month .active {
-  /* background-color: lightgreen; */
   cursor: pointer;
 }
 </style>
