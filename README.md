@@ -1,14 +1,14 @@
-# My Private Diary
+# My Journal
 
-This app allows you to setup your own private diary using Docker. To use a custom domain for your diary you need to configure a web proxy server, like Nginx that can handle your domain zone, and probably TLS certificats, like "Let's Encrypt".
+This app allows you to setup your own private journal using Docker. To use a custom domain for your journal you need to configure a web proxy server, like Nginx that can handle your domain zone, and probably TLS certificats, like "Let's Encrypt".
 
 Built on top of Loopback 3 and VueJS 2.
 
 ## Setup
 
 ```
-# set password for diary
-echo 'DIARY_PASSWORD=123456' > .docker-env
+# set password for journal
+echo 'MYJOURNAL_PASSWORD=123456' > .docker-env
 ```
 
 ## Development
@@ -48,11 +48,11 @@ HOST=10.0.0.1 npm run dev
 
 ```bash
 # clone repo
-git clone https://github.com/manyahin/mydiary.git
-cd mydiary
+git clone https://github.com/manyahin/myjournal.git
+cd myjournal
 
 # set password
-echo 'DIARY_PASSWORD=123456' > .docker-env
+echo 'MYJOURNAL_PASSWORD=123456' > .docker-env
 
 # build
 docker-compose build
@@ -89,6 +89,6 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 
 ```bash
 tar -zxvf $FILE.tar.gz
-docker run --rm --network mydiary_default -v "$(pwd)/mongo_db":/backup \
+docker run --rm --network myjournal_default -v "$(pwd)/mongo_db":/backup \
   mongo:3.4 bash -c 'mongorestore /backup --host db:27017'
 ```

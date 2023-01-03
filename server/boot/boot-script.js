@@ -8,14 +8,14 @@ module.exports = function(app) {
   })
 
   // create default customer
-  const DIARY_PASSWORD = process.env.DIARY_PASSWORD
+  const MYJOURNAL_PASSWORD = process.env.MYJOURNAL_PASSWORD
   const Customer = app.models.Customer
 
   Customer.count((err, cnt) => {
     if (!cnt) {
-      if (!DIARY_PASSWORD) {
+      if (!MYJOURNAL_PASSWORD) {
         console.log('Error:')
-        console.log('Need to set DIARY_PASSWORD envirable to create a default user')
+        console.log('Need to set MYJOURNAL_PASSWORD envirable to create a default user')
         process.exit(1)
       }
 
@@ -23,7 +23,7 @@ module.exports = function(app) {
         "username": "user",
         "email": "user@mail.com",
         "emailVerified": true,
-        'password': DIARY_PASSWORD
+        'password': MYJOURNAL_PASSWORD
       }, (err) => {
         if (err) {
           console.log('Error:')

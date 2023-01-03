@@ -2,13 +2,13 @@ version: "3"
 
 services:
   web:
-    image: mydiary:1.2.1
+    image: myjournal:1.3
     build: .
     ports:
       - "127.0.0.1:3001:3000"
     environment:  
       - NODE_ENV=production
-      - DIARY_PASSWORD=123456
+      - MYJOURNAL_PASSWORD=123456
     links:
       - db
     restart: always

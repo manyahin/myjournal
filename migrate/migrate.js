@@ -5,10 +5,10 @@ var connection = mysql.createConnection({
   host     : '127.0.0.1',
   user     : 'root',
   password : 'root',
-  database : 'diary'
+  database : 'myjournal'
 });
 
-const db = require('monk')('localhost/diary')
+const db = require('monk')('localhost/myjournal')
 const note = db.get('Note')
 
 connection.connect();
