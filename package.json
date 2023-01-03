@@ -2,7 +2,7 @@
   "name": "myjournal",
   "description": "Your own journal",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
-  "version": "1.3",
+  "version": "1.3.0",
   "main": "server/server.js",
   "engines": {
     "node": ">=4"
