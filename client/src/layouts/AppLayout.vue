@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
         <div class="pure-menu pure-menu-horizontal">
-            <a class="pure-menu-heading" href="">My Diary</a>
+            <a class="pure-menu-heading" href="">My Journal</a>
             <ul class="pure-menu-list">
               <router-link class="pure-menu-item" active-class="pure-menu-selected" tag="li" to="/write">
                 <a class="pure-menu-link">Write</a>

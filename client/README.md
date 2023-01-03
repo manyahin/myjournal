@@ -1,6 +1,6 @@
-# My Private Diary Client
+# My Journal Client
 
-A front-end part for My Private Diary
+A front-end part for My Journal
 
 ## Build Setup
 

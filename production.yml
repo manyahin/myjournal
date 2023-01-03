@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    image: mydiary:1.2.1
+    image: myjournal:1.3
     build: .
     ports:
       - "127.0.0.1:3000:3000"

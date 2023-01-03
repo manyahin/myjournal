@@ -1,8 +1,8 @@
 {
-  "name": "my_private_diary",
-  "description": "Your own private diary",
+  "name": "myjournal",
+  "description": "Your own journal",
   "author": "Ilya Manyahin <i.manyahin@gmail.com>",
-  "version": "1.2.1",
+  "version": "1.3",
   "main": "server/server.js",
   "engines": {
     "node": ">=4"
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/manyahin/myprivatediary"
+    "url": "https://github.com/manyahin/myjournal"
   },
   "license": "MIT"
 }

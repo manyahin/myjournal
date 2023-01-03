@@ -1,7 +1,7 @@
 <template>
   <form class="pure-form pure-form-stacked" @submit.prevent="login">
     <fieldset>
-        <h3>My Diary</h3>
+        <h3>My Journal</h3>
 
         <!--
         <label for="email">Email</label>
