@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 echo "Make backup of database"
 
@@ -8,10 +8,12 @@ docker run --rm --network myjournal_default -v "$(pwd)/mongo_db":/backup \
 	mongo:3.4 bash -c 'mongodump --out /backup --host db:27017'
 
 DATE=$(date +%Y%m%d)
-FILE=mongodb_$DATE.tar.gz
+ARCHIVE_NAME="mongodb_${DATE}.tar.gz"
 
-tar -zcvf $FILE ./mongo_db
+tar -zcvf $ARCHIVE_NAME ./mongo_db
 
 rm -rf ./mongo_db
 
-./dropbox_uploader.sh upload $FILE /
+echo "Deploy backup to Dropbox"
+
+./dropbox_uploader.sh upload $ARCHIVE_NAME /
