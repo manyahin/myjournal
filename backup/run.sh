@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Make backup of database"
+echo "Make backup of the database"
 
 cd $(dirname $0)
 
@@ -14,6 +14,6 @@ tar -zcvf $ARCHIVE_NAME ./mongo_db
 
 rm -rf ./mongo_db
 
-echo "Deploy backup to Dropbox"
+echo "Deploy the backup to Dropbox"
 
 ./dropbox_uploader.sh upload $ARCHIVE_NAME /
