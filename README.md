@@ -89,13 +89,12 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 
 ```bash
 tar -zxvf $FILE.tar.gz
-docker run --rm --network myjournal_default -v "$(pwd)/mongo_dump":/backup \
-  mongo:5.0 bash -c 'mongorestore /backup --host db:27017'
+
+docker run --rm --network myjournal_default -v "$(pwd)/mongo_dump":/backup mongo:5.0 bash -c 'mongorestore /backup --host db:27017'
 ```
 
 __Git Bash__ in __Windows__ has [the bug](https://stackoverflow.com/questions/50608301/docker-mounted-volume-adds-c-to-end-of-windows-path-when-translating-from-linux), add the leading slash before `$(pwd)` in that case. The same technique should be used for `/backup/run.sh` script.
 
 ```bash
-docker run --rm --network myjournal_default -v "/$(pwd)/mongo_dump":/backup \
-  mongo:5.0 bash -c 'mongorestore /backup --host db:27017'
+docker run --rm --network myjournal_default -v "/$(pwd)/mongo_dump":/backup mongo:5.0 bash -c 'mongorestore /backup --host db:27017'
 ```
