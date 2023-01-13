@@ -84,6 +84,9 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 
 # run the script
 /backup/run.sh
+
+# setup cron job (todo: store logs)
+# 0 0 * * * /var/www/myjournal/backup/run.sh
 ```
 
 ## Restore DB
