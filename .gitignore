@@ -18,8 +18,9 @@ coverage
 node_modules
 npm-debug.log
 
-# mongodb storage
-mongodb_data
+# mongo folders
+mongo_data
+mongo_dump
 
-# docker 
+# docker envs
 .docker-env

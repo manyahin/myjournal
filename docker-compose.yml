@@ -16,7 +16,7 @@ services:
       - .docker-env
 
   db:
-    image: mongo:3.4
+    image: mongo:5.0
     volumes:
       - 'mongo:/data/db'
     ports: 

@@ -90,5 +90,5 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 ```bash
 tar -zxvf $FILE.tar.gz
 docker run --rm --network myjournal_default -v "$(pwd)/mongo_db":/backup \
-  mongo:3.4 bash -c 'mongorestore /backup --host db:27017'
+  mongo:5.0 bash -c 'mongorestore /backup --host db:27017'
 ```

@@ -11,8 +11,7 @@
     "dev": "nodemon --ignore 'client/*' .",
     "start": "node .",
     "lint": "eslint .",
-    "prod": "docker-compose -f production.yml up -d",
-    "stage": "docker-compose -f stage.yml up -d"
+    "prod": "docker-compose -f production.yml up -d"
   },
   "dependencies": {
     "compression": "^1.7.4",
