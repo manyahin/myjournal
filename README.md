@@ -80,8 +80,9 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 ```bash
 # setup dropbox app token (only once)
 /backup/dropbox_uploader.sh
+# the token will be stored in `~/.dropbox_uploader`
 
-# run script
+# run the script
 /backup/run.sh
 ```
 
