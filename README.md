@@ -75,7 +75,9 @@ docker-compose logs web
 
 # Backup
 
-The backup script will make tar.gz archive in backup folder and upload it to Dropbox
+The backup script will make dump of MongoDB, archive it as tar.gz and upload to Dropbox.
+
+All the scripts need to be executed as `root` to avoid root ownership over mounted volumes. It needs to be fixed in the later versions.
 
 ```bash
 # setup dropbox app token (only once)
@@ -86,9 +88,8 @@ The backup script will make tar.gz archive in backup folder and upload it to Dro
 /backup/run.sh
 
 # setup cron job (only once)
-# need to be executed as root to avoid root owner for mounted volumes (todo: fix it)
 crontab -l | { cat; echo "0 0 * * * /var/www/myjournal/backup/run.sh &>> /var/www/myjournal/backup/cron.log"; } | crontab -
-# runs the backup script every day at midnight
+# it runs the backup script every day at midnight
 ```
 
 ## Restore DB
