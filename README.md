@@ -75,7 +75,7 @@ docker-compose logs web
 
 # Backup
 
-The backup script will make tar.gz archive in backup folder and will upload it to Dropbox
+The backup script will make tar.gz archive in backup folder and upload it to Dropbox
 
 ```bash
 # setup dropbox app token (only once)
@@ -85,8 +85,9 @@ The backup script will make tar.gz archive in backup folder and will upload it t
 # run the script
 /backup/run.sh
 
-# setup cron job (todo: store logs)
-# 0 0 * * * /var/www/myjournal/backup/run.sh
+# setup cron job (only once)
+crontab -l | { cat; echo "0 0 * * * /var/www/myjournal/backup/run.sh &>> /var/www/myjournal/backup/cron.log"; } | crontab -
+# runs the backup script every day at midnight
 ```
 
 ## Restore DB

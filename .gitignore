@@ -24,3 +24,6 @@ mongo_dump
 
 # docker envs
 .docker-env
+
+# backup cron log
+backup/cron.log
