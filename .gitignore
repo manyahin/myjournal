@@ -18,12 +18,14 @@ coverage
 node_modules
 npm-debug.log
 
-# mongo folders
+# mongo data folder
 mongo_data
-mongo_dump
 
 # docker envs
 .docker-env
 
-# backup cron log
+# backup 
+backup/mongo_dump
 backup/cron.log
+backup/*.tar.gz
+backup/.dropbox_uploader
