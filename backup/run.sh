@@ -7,29 +7,35 @@ echo "---------------------------------"
 echo "Starting backup script..."
 echo "Current date: $(date)"
 
-cd $(dirname $0)
-
 MONGO_VERSION="5.0"
-BACKUP_FOLDER="mongo_dump"
-DATE=$(date +%Y%m%d)
-ARCHIVE_NAME="mongo_dump_${MONGO_VERSION}_${DATE}.tar.gz"
+
+PROJECT_ROOT_DIR=$(dirname `pwd`)
+BACKUP_FOLDER_PATH="${PROJECT_ROOT_DIR}/mongo_dump"
+
+ARCHIVE_DATE=$(date +%Y%m%d)
+ARCHIVE_NAME="mongo_dump_${MONGO_VERSION}_${ARCHIVE_DATE}.tar.gz"
+ARCHIVE_PATH="${PROJECT_ROOT_DIR}/${ARCHIVE_NAME}"
 
 echo "Making a backup of MongoDB ${MONGO_VERSION}.."
 
-docker run --rm --network myjournal_default -v "$(pwd)/${BACKUP_FOLDER}":/backup \
+docker run --rm --network myjournal_default -v "${BACKUP_FOLDER_PATH}":/backup \
 	mongo:${MONGO_VERSION} bash -c 'mongodump --out /backup --host db:27017'
 
 echo "Compressing the backup using tar with current date: ${DATE}"
 
-tar -zcvf ${ARCHIVE_NAME} ./${BACKUP_FOLDER}
+tar -zcvf ${ARCHIVE_PATH} ${BACKUP_FOLDER_PATH}
 
 echo "Removing the backup temporary folder"
 
-rm -rf ./${BACKUP_FOLDER}
+rm -rf ${BACKUP_FOLDER_PATH}
 
 echo "Uploading the backup to Dropbox"
 
-./dropbox_uploader.sh upload ${ARCHIVE_NAME} /
+./dropbox_uploader.sh upload ${ARCHIVE_PATH} /
+
+echo "Removing the backup archive"
+
+rm -rf ${ARCHIVE_PATH}
 
 echo "Done!"
 exit 0
