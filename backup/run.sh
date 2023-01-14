@@ -9,12 +9,13 @@ echo "Current date: $(date)"
 
 MONGO_VERSION="5.0"
 
-PROJECT_ROOT_DIR=$(dirname `pwd`)
-BACKUP_FOLDER_PATH="${PROJECT_ROOT_DIR}/mongo_dump"
+BACKUP_DIR_PATH=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
+PROJECT_ROOT_PATH=$(dirname "${BACKUP_DIR_PATH}")
+BACKUP_FOLDER_PATH="${PROJECT_ROOT_PATH}/mongo_dump"
 
 ARCHIVE_DATE=$(date +%Y%m%d)
 ARCHIVE_NAME="mongo_dump_${MONGO_VERSION}_${ARCHIVE_DATE}.tar.gz"
-ARCHIVE_PATH="${PROJECT_ROOT_DIR}/${ARCHIVE_NAME}"
+ARCHIVE_PATH="${PROJECT_ROOT_PATH}/${ARCHIVE_NAME}"
 
 echo "Making a backup of MongoDB ${MONGO_VERSION}.."
 
