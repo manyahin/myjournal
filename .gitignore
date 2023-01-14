@@ -25,7 +25,6 @@ mongo_data
 .docker-env
 
 # backup 
-backup/mongo_dump
 backup/cron.log
 backup/*.tar.gz
 backup/.dropbox_uploader

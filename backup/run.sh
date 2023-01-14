@@ -31,7 +31,7 @@ rm -rf ${BACKUP_FOLDER_PATH}
 
 echo "Uploading the backup to Dropbox"
 
-./dropbox_uploader.sh upload ${ARCHIVE_PATH} /
+${BACKUP_DIR_PATH}/dropbox_uploader.sh upload ${ARCHIVE_PATH} /
 
 echo "Removing the backup archive"
 

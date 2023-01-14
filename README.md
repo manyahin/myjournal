@@ -86,6 +86,7 @@ The backup script will make tar.gz archive in backup folder and upload it to Dro
 /backup/run.sh
 
 # setup cron job (only once)
+# need to be executed as root to avoid root owner for mounted volumes (todo: fix it)
 crontab -l | { cat; echo "0 0 * * * /var/www/myjournal/backup/run.sh &>> /var/www/myjournal/backup/cron.log"; } | crontab -
 # runs the backup script every day at midnight
 ```
